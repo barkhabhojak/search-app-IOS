@@ -9,14 +9,15 @@
 import UIKit
 import McPicker
 import GooglePlaces
+import EasyToast
 
 class ViewController: UIViewController {
     
     var keyword = ""
-    var category = ""
+    var category = "Default"
     var location = ""
-    var locationString: String = ""
-    var distance = ""
+    var locationString = "Your Location"
+    var distance = "10"
     
     @IBOutlet weak var keywordTextField: UITextField!
     @IBOutlet weak var distanceTextField: UITextField!
@@ -41,15 +42,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    @IBAction func finishKeywordEdit(_ sender: UITextField) {
-        self.keyword = keywordTextField.text!
-    }
-    
-    @IBAction func finishDistanceEdit(_ sender: UITextField) {
-        self.distance = distanceTextField.text!
-    }
-    
     @IBAction func autocomplete(_ sender: Any) {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
@@ -57,22 +49,65 @@ class ViewController: UIViewController {
         print ("Location string: " + locationString)
     }
     
+
+    @IBAction func distanceEdit(_ sender: Any) {
+        self.distance = distanceTextField.text!
+    }
+
+
+    @IBAction func keywordEdit(_ sender: Any) {
+        self.keyword = keywordTextField.text!
+    }
+
     @IBAction func clearBtnPress(_ sender: UIButton) {
         keywordTextField.text = ""
         distanceTextField.text = ""
         distanceTextField.placeholder = "Enter distance (default 10 miles)"
         locationTextField.text = "Your Location"
         mcTextField.text = "Default"
+        self.keyword = ""
+        self.category = "Default"
+        self.location = ""
+        self.locationString = ""
+        self.distance = "10"
     }
     
     @IBAction func searchBtnPress(_ sender: UIButton) {
-        print("keyword = " + keyword)
-        print("category = " + category)
-        print("location string = " + locationString)
-        print("distance = " + distance)
+        if keyword.replacingOccurrences(of: " ", with: "").isEmpty {
+            print("key")
+            self.view.showToast("Keyword cannot be empty", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
+        }
+
+        else if locationString.replacingOccurrences(of: " ", with: "").isEmpty {
+            print("loc")
+            self.view.showToast("Location cannot be empty", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
+        }
+
+        else if !distance.isNumeric {
+            print("dist")
+            self.view.showToast("Distance must be a number", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
+        }
+
+        else if !keyword.replacingOccurrences(of: " ", with: "").isEmpty && !category.replacingOccurrences(of: " ", with: "").isEmpty && !distance.replacingOccurrences(of: " ", with: "").isEmpty && !locationString.replacingOccurrences(of: " ", with: "").isEmpty && distance.isNumeric {
+            
+            performSegue(withIdentifier: "search", sender: nil)
+            print("keyword = " + keyword)
+            print("category = " + category)
+            print("location string = " + locationString)
+            print("distance = " + distance)
+
+        }
+        
     }
-    
-    
+
+}
+
+extension String {
+    var isNumeric: Bool {
+        guard self.characters.count > 0 else { return false }
+        let nums: Set<Character> = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        return Set(self.characters).isSubset(of: nums)
+    }
 }
 
 extension ViewController: GMSAutocompleteViewControllerDelegate {

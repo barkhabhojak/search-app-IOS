@@ -42,7 +42,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="finishKeywordEdit:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="Bl6-1t-ZCi"/>
+                                    <action selector="keywordEdit:" destination="BYZ-38-t0r" eventType="editingChanged" id="1dY-oe-var"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMe-cd-S2q">
@@ -76,7 +76,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="finishDistanceEdit:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="fGH-Y6-7oQ"/>
+                                    <action selector="distanceEdit:" destination="BYZ-38-t0r" eventType="editingChanged" id="PvY-UG-2OI"/>
                                 </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTG-FO-QJE">
@@ -119,7 +119,6 @@
                                 </state>
                                 <connections>
                                     <action selector="searchBtnPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="II9-In-faY"/>
-                                    <segue destination="fYY-gH-ncb" kind="show" id="GdG-5P-Mz4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -136,6 +135,7 @@
                         <outlet property="keywordTextField" destination="YfY-Yq-Xx7" id="3BA-o4-pFO"/>
                         <outlet property="locationTextField" destination="a0U-pM-id0" id="zB7-fw-rEO"/>
                         <outlet property="mcTextField" destination="aEc-Js-BtJ" id="J83-hM-rS3"/>
+                        <segue destination="fYY-gH-ncb" kind="show" identifier="search" id="uyx-8F-Yy2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
