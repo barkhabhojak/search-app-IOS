@@ -41,6 +41,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="finishKeywordEdit:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="Bl6-1t-ZCi"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMe-cd-S2q">
                                 <rect key="frame" x="40" y="179" width="71" height="21"/>
@@ -49,7 +52,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aEc-Js-BtJ" customClass="McTextField" customModule="McPicker">
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Default" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aEc-Js-BtJ" customClass="McTextField" customModule="McPicker">
                                 <rect key="frame" x="40" y="202" width="295" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
@@ -72,6 +75,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="finishDistanceEdit:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="fGH-Y6-7oQ"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTG-FO-QJE">
                                 <rect key="frame" x="40" y="301" width="40" height="21"/>
@@ -100,6 +106,9 @@
                                 <state key="normal" title="CLEAR">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="clearBtnPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="V9n-OD-VKI"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wvd-Pu-cVA">
                                 <rect key="frame" x="40" y="384" width="132" height="30"/>
@@ -109,6 +118,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="searchBtnPress:" destination="BYZ-38-t0r" eventType="touchUpInside" id="II9-In-faY"/>
                                     <segue destination="fYY-gH-ncb" kind="show" id="GdG-5P-Mz4"/>
                                 </connections>
                             </button>
@@ -122,6 +132,8 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="distanceTextField" destination="2w4-zc-Knr" id="gQc-vC-eHU"/>
+                        <outlet property="keywordTextField" destination="YfY-Yq-Xx7" id="3BA-o4-pFO"/>
                         <outlet property="locationTextField" destination="a0U-pM-id0" id="zB7-fw-rEO"/>
                         <outlet property="mcTextField" destination="aEc-Js-BtJ" id="J83-hM-rS3"/>
                     </connections>

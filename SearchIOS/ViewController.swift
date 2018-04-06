@@ -18,6 +18,8 @@ class ViewController: UIViewController {
     var locationString: String = ""
     var distance = ""
     
+    @IBOutlet weak var keywordTextField: UITextField!
+    @IBOutlet weak var distanceTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var mcTextField: McTextField!
     override func viewDidLoad() {
@@ -27,6 +29,7 @@ class ViewController: UIViewController {
         mcTextField.inputViewMcPicker = mcInputView
         mcTextField.doneHandler = { [weak mcTextField] (selections) in
             mcTextField?.text = selections[0]!
+            self.category = (mcTextField?.text)!
             //do something if user selects an option and taps done
         }
             mcTextField.cancelHandler = { [weak mcTextField] in
@@ -39,13 +42,37 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    @IBAction func finishKeywordEdit(_ sender: UITextField) {
+        self.keyword = keywordTextField.text!
+    }
+    
+    @IBAction func finishDistanceEdit(_ sender: UITextField) {
+        self.distance = distanceTextField.text!
+    }
+    
     @IBAction func autocomplete(_ sender: Any) {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
         present(autocompleteController, animated: true, completion: nil)
         print ("Location string: " + locationString)
     }
+    
+    @IBAction func clearBtnPress(_ sender: UIButton) {
+        keywordTextField.text = ""
+        distanceTextField.text = ""
+        distanceTextField.placeholder = "Enter distance (default 10 miles)"
+        locationTextField.text = "Your Location"
+        mcTextField.text = "Default"
+    }
+    
+    @IBAction func searchBtnPress(_ sender: UIButton) {
+        print("keyword = " + keyword)
+        print("category = " + category)
+        print("location string = " + locationString)
+        print("distance = " + distance)
+    }
+    
+    
 }
 
 extension ViewController: GMSAutocompleteViewControllerDelegate {
