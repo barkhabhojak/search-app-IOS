@@ -122,6 +122,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="locationTextField" destination="a0U-pM-id0" id="zB7-fw-rEO"/>
                         <outlet property="mcTextField" destination="aEc-Js-BtJ" id="J83-hM-rS3"/>
                     </connections>
                 </viewController>

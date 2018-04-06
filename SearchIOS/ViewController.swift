@@ -12,6 +12,13 @@ import GooglePlaces
 
 class ViewController: UIViewController {
     
+    var keyword = ""
+    var category = ""
+    var location = ""
+    var locationString: String = ""
+    var distance = ""
+    
+    @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var mcTextField: McTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +44,7 @@ class ViewController: UIViewController {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
         present(autocompleteController, animated: true, completion: nil)
+        print ("Location string: " + locationString)
     }
 }
 
@@ -44,9 +52,11 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place name: \(place.name)")
-        print("Place address: \(place.formattedAddress)")
-        print("Place attributions: \(place.attributions)")
+//        print("Place name: \(place.name)")
+//        print("Place address: \(place.formattedAddress)")
+//        print("Place attributions: \(place.attributions)")
+        locationString = place.name + ", " + place.formattedAddress!
+        locationTextField.text = locationString
         dismiss(animated: true, completion: nil)
     }
     
