@@ -9,7 +9,7 @@ target 'SearchIOS' do
 
 pod 'Alamofire'
 pod 'AlamofireSwiftyJSON'
-pod ’McPicker'
+pod 'McPicker'
 pod 'SwiftSpinner'
 pod 'EasyToast'
 pod 'Cosmos'
