@@ -142,10 +142,10 @@
             </objects>
             <point key="canvasLocation" x="-156" y="-116.49175412293854"/>
         </scene>
-        <!--View Controller-->
+        <!--Result View Controller-->
         <scene sceneID="a2k-r2-Jub">
             <objects>
-                <viewController id="fYY-gH-ncb" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TableViewController" title="Result View Controller" id="fYY-gH-ncb" customClass="TableViewController" customModule="SearchIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ACd-Z6-ZJX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
