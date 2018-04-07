@@ -31,9 +31,21 @@ class TableViewController: UIViewController {
     
     func getResults() {
         SwiftSpinner.show("Searching")
+        print ("url = " + url)
         Alamofire.request(url).responseSwiftyJSON { response in
-            let json = response.result.value //A JSON object
-            print (json)
+            let places = response.result.value //A JSON object
+            //print (places)
+            if places!["status"] == "OK" {
+                //places!["results"].count
+                
+            }
+            else if places!["status"] == "ZERO_RESULTS" {
+                self.view.showToast("No results", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
+            }
+            else {
+                self.view.showToast("Error in retrieving details", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
+            }
+            
 //            let isSuccess = response.result.isSuccess
 //            if (isSuccess && (json != nil)) {
 //                //do something

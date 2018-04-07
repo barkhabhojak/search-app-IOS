@@ -10,6 +10,7 @@ import UIKit
 import McPicker
 import GooglePlaces
 import EasyToast
+import CoreLocation
 
 class ViewController: UIViewController {
     
@@ -19,6 +20,8 @@ class ViewController: UIViewController {
     var locationString = "Your Location"
     var distance = "10"
     var url = ""
+    var latitude = ""
+    var longitude = ""
     
     @IBOutlet weak var keywordTextField: UITextField!
     @IBOutlet weak var distanceTextField: UITextField!
@@ -26,6 +29,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var mcTextField: McTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        var locManager = CLLocationManager()
+        locManager.requestWhenInUseAuthorization()
+        var currentLocation: CLLocation!
+        currentLocation = locManager.location
+        longitude = String(format:"%f", currentLocation.coordinate.longitude)
+        latitude = String(format:"%f", currentLocation.coordinate.latitude)
+        
         let data: [[String]] = [["Default", "Airport","Amusement Park", "Aquarium", "Art Gallery", "Bakery", "Bar", "Beauty Salon", "Bowling Alley", "Bus Station", "Cafe", "Campground", "Car Rental", "Casino", "Lodging", "Movie Theater", "Museum", "Night Club", "Park", "Parking", "Restaurant", "Shopping Mall", "Stadium", "Subway Station", "Taxi Stand", "Train Station", "Transit Agency", "Zoo"]]
         let mcInputView = McPicker(data: data)
         mcTextField.inputViewMcPicker = mcInputView
@@ -92,7 +102,7 @@ class ViewController: UIViewController {
         else if !keyword.replacingOccurrences(of: " ", with: "").isEmpty && !category.replacingOccurrences(of: " ", with: "").isEmpty && !distance.replacingOccurrences(of: " ", with: "").isEmpty && !locationString.replacingOccurrences(of: " ", with: "").isEmpty && distance.isNumeric {
             
             if locationString.lowercased() == "your location" || locationString.lowercased() == "my location" {
-                url = "http://placesearch-env.us-east-2.elasticbeanstalk.com/result?keyw=" + replaceString(str: keyword) + "&category=" + replaceString(str: category) + "&distance=" + replaceString(str: distance) + "&locOpt=curr-loc-34.0266%2C-118.2831"
+                url = "http://placesearch-env.us-east-2.elasticbeanstalk.com/result?keyw=" + replaceString(str: keyword) + "&category=" + replaceString(str: category) + "&distance=" + replaceString(str: distance) + "&locOpt=curr-loc-" + latitude + "%2C" + longitude
             }
             else {
                 url = "http://placesearch-env.us-east-2.elasticbeanstalk.com/result?keyw=" + replaceString(str: keyword) + "&category=" + replaceString(str: category) + "&distance=" + replaceString(str: distance) + "&locOpt=other-loc&loc=" + replaceString(str: locationString)
