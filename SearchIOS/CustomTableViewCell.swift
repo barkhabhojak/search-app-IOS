@@ -14,6 +14,9 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var favorites: UIImageView!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var name: UILabel!
+    var placeId = ""
+    var fav = false
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

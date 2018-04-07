@@ -73,6 +73,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
             cell.icon.image = image
         }
         cell.favorites.image = UIImage(named: "favorite-empty")
+        cell.placeId = dict["place_id"] as! String
         return cell
     }
     
@@ -83,6 +84,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
         print(cell.name.text as! String)
+        print(cell.placeId)
     }
     
 }
