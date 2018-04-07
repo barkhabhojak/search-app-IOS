@@ -21,6 +21,8 @@ class TableViewController: UIViewController {
         super.viewDidLoad()
         self.tblJSON.tableFooterView = UIView(frame: CGRect.zero)
         tblJSON.rowHeight = 70
+//        tblJSON.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+//        tblJSON.separatorColor = UIColor.gray
         print("url = " + url);
         getResults();
     }
@@ -64,6 +66,13 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         var dict = arrRes[(indexPath as NSIndexPath).row]
         cell.name.text = dict["name"] as? String
         cell.address.text = dict["vicinity"] as? String
+        let url = URL(string:dict["icon"] as! String)
+        if let data = try? Data(contentsOf: url!)
+        {
+            let image: UIImage = UIImage(data: data)!
+            cell.icon.image = image
+        }
+        cell.favorites.image = UIImage(named: "favorite-empty")
         return cell
     }
     
