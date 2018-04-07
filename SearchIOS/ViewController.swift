@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     var location = ""
     var locationString = "Your Location"
     var distance = "10"
+    var url = ""
     
     @IBOutlet weak var keywordTextField: UITextField!
     @IBOutlet weak var distanceTextField: UITextField!
@@ -90,14 +91,40 @@ class ViewController: UIViewController {
 
         else if !keyword.replacingOccurrences(of: " ", with: "").isEmpty && !category.replacingOccurrences(of: " ", with: "").isEmpty && !distance.replacingOccurrences(of: " ", with: "").isEmpty && !locationString.replacingOccurrences(of: " ", with: "").isEmpty && distance.isNumeric {
             
+            if locationString.lowercased() == "your location" || locationString.lowercased() == "my location" {
+                url = "http://placesearch-env.us-east-2.elasticbeanstalk.com/result?keyw=" + replaceString(str: keyword) + "&category=" + replaceString(str: category) + "&distance=" + replaceString(str: distance) + "&locOpt=curr-loc-34.0266%2C-118.2831"
+            }
+            else {
+                url = "http://placesearch-env.us-east-2.elasticbeanstalk.com/result?keyw=" + replaceString(str: keyword) + "&category=" + replaceString(str: category) + "&distance=" + replaceString(str: distance) + "&locOpt=other-loc&loc=" + replaceString(str: locationString)
+            }
+            //http://placesearch-env.us-east-2.elasticbeanstalk.com/result?keyw=pizza&category=Default&distance=15&locOpt=curr-loc-34.0266%2C-118.2831"
+            //http://placesearch-env.us-east-2.elasticbeanstalk.com/result?keyw=pizza&category=Default&distance=25&locOpt=other-loc&loc=North+Alameda+Street%2C+Los+Angeles%2C+CA%2C+USA
             performSegue(withIdentifier: "search", sender: nil)
-            print("keyword = " + keyword)
-            print("category = " + category)
-            print("location string = " + locationString)
-            print("distance = " + distance)
+            
+//            print("keyword = " + keyword)
+//            print("category = " + category)
+//            print("location string = " + locationString)
+//            print("distance = " + distance)
 
         }
         
+    }
+    
+    func replaceString(str: String) -> String {
+        var newStr = ""
+        newStr = str.replacingOccurrences(of: "'", with: "")
+        newStr = newStr.replacingOccurrences(of: ",", with: "")
+        newStr = newStr.replacingOccurrences(of: " ", with: "+")
+        return newStr
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is TableViewController
+        {
+            let vc = segue.destination as? TableViewController
+            vc?.url = self.url
+        }
     }
 
 }
@@ -117,6 +144,7 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
 //        print("Place name: \(place.name)")
 //        print("Place address: \(place.formattedAddress)")
 //        print("Place attributions: \(place.attributions)")
+        location = place.name
         locationString = place.name + ", " + place.formattedAddress!
         locationTextField.text = locationString
         dismiss(animated: true, completion: nil)
