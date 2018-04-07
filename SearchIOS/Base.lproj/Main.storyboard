@@ -233,6 +233,8 @@
                         <viewLayoutGuide key="safeArea" id="uer-vP-54h"/>
                     </view>
                     <connections>
+                        <outlet property="nextBtn" destination="RIe-rU-UD6" id="mPz-Za-Ane"/>
+                        <outlet property="prevBtn" destination="xC6-PS-p3h" id="qGI-HN-VPi"/>
                         <outlet property="tblJSON" destination="zpg-UJ-P8E" id="beq-1P-RxU"/>
                     </connections>
                 </viewController>
