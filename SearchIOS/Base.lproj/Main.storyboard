@@ -154,6 +154,9 @@
                                 <rect key="frame" x="0.0" y="613" width="187" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Previous"/>
+                                <connections>
+                                    <action selector="getPrevPage:" destination="fYY-gH-ncb" eventType="touchUpInside" id="rHC-yn-hzF"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIe-rU-UD6">
                                 <rect key="frame" x="188" y="613" width="187" height="54"/>

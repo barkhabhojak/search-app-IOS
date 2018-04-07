@@ -75,7 +75,7 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
         var token = self.nextPageTokens[currPageIndex]
         var tempUrl = "http://placesearch-env.us-east-2.elasticbeanstalk.com/result?next_page_token=" + token.replacingOccurrences(of: " ", with: "")
         SwiftSpinner.show("Getting Next Page..")
-        print ("url = " + url)
+        print ("next url = " + url)
         Alamofire.request(tempUrl).responseSwiftyJSON { response in
             let places = response.result.value //A JSON object
             if places!["status"] == "OK" {
@@ -115,6 +115,52 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
             SwiftSpinner.hide()
         }
         self.currPageIndex += 1
+    }
+    
+    @IBAction func getPrevPage(_ sender: UIButton) {
+        var tempUrl = ""
+        if self.currPageIndex - 2 >= 0 {
+            var token = self.nextPageTokens[currPageIndex-2]
+            tempUrl = "http://placesearch-env.us-east-2.elasticbeanstalk.com/result?next_page_token=" + token.replacingOccurrences(of: " ", with: "")
+        }
+        else {
+            tempUrl = url
+        }
+        SwiftSpinner.show("Getting Previous Page..")
+        print ("prev url = " + url)
+        Alamofire.request(tempUrl).responseSwiftyJSON { response in
+            let places = response.result.value //A JSON object
+            if places!["status"] == "OK" {
+                if let resData = places!["results"].arrayObject {
+                    self.arrRes = resData as! [[String:AnyObject]]
+                }
+                if self.currPageIndex == 0 {
+                    self.prevBtn.isEnabled = false;
+                }
+                else {
+                    self.prevBtn.isEnabled = true;
+                }
+                if self.nextPageTokens.count > self.currPageIndex - 1 {
+                    self.nextBtn.isEnabled = true
+                }
+                else {
+                    self.nextBtn.isEnabled = false
+                }
+                self.tblJSON.reloadData()
+            }
+            else if places!["status"] == "ZERO_RESULTS" {
+                self.view.showToast("No results", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
+                self.prevBtn.isEnabled = false
+                self.nextBtn.isEnabled = false
+            }
+            else {
+                self.view.showToast("Error in retrieving details", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
+                self.prevBtn.isEnabled = false
+                self.nextBtn.isEnabled = false
+            }
+            SwiftSpinner.hide()
+        }
+        self.currPageIndex -= 1
     }
     
 }
