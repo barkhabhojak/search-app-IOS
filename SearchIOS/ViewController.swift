@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import McPicker
-import GooglePlaces
-import EasyToast
 import CoreLocation
+import GooglePlaces
+import McPicker
+import EasyToast
 
 class ViewController: UIViewController {
     
@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var mcTextField: McTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
-        var locManager = CLLocationManager()
+        let locManager = CLLocationManager()
         locManager.requestWhenInUseAuthorization()
         var currentLocation: CLLocation!
         currentLocation = locManager.location

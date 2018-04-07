@@ -7,14 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30212A27207945EC00C57D84 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30212A26207945EC00C57D84 /* TableViewController.swift */; };
+		30212A2B2079555700C57D84 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30212A2A2079555700C57D84 /* CustomTableViewCell.swift */; };
 		30AE0BA42077092500F44AD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AE0BA32077092500F44AD0 /* AppDelegate.swift */; };
 		30AE0BA62077092500F44AD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AE0BA52077092500F44AD0 /* ViewController.swift */; };
 		30AE0BA92077092500F44AD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30AE0BA72077092500F44AD0 /* Main.storyboard */; };
 		30AE0BAB2077092500F44AD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30AE0BAA2077092500F44AD0 /* Assets.xcassets */; };
 		30AE0BAE2077092500F44AD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30AE0BAC2077092500F44AD0 /* LaunchScreen.storyboard */; };
+		DA7FF8BEB5A9E36E07BEB607 /* Pods_SearchIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE14D06BC87A2A99EA6350FF /* Pods_SearchIOS.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30212A26207945EC00C57D84 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		30212A2A2079555700C57D84 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		30AE0BA02077092500F44AD0 /* SearchIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30AE0BA32077092500F44AD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30AE0BA52077092500F44AD0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +27,9 @@
 		30AE0BAA2077092500F44AD0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		30AE0BAD2077092500F44AD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		30AE0BAF2077092500F44AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		319AEEFF13304C9715059143 /* Pods-SearchIOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchIOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SearchIOS/Pods-SearchIOS.debug.xcconfig"; sourceTree = "<group>"; };
+		7DBE0DAF84C3D626AF235DD9 /* Pods-SearchIOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SearchIOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-SearchIOS/Pods-SearchIOS.release.xcconfig"; sourceTree = "<group>"; };
+		DE14D06BC87A2A99EA6350FF /* Pods_SearchIOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SearchIOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +37,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DA7FF8BEB5A9E36E07BEB607 /* Pods_SearchIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2AA8CDC7BAA016409B8B336D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				319AEEFF13304C9715059143 /* Pods-SearchIOS.debug.xcconfig */,
+				7DBE0DAF84C3D626AF235DD9 /* Pods-SearchIOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		30AE0B972077092500F44AD0 = {
 			isa = PBXGroup;
 			children = (
 				30AE0BA22077092500F44AD0 /* SearchIOS */,
 				30AE0BA12077092500F44AD0 /* Products */,
+				2AA8CDC7BAA016409B8B336D /* Pods */,
+				9850B079355A20DF8C93BC16 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,6 +74,8 @@
 		30AE0BA22077092500F44AD0 /* SearchIOS */ = {
 			isa = PBXGroup;
 			children = (
+				30212A26207945EC00C57D84 /* TableViewController.swift */,
+				30212A2A2079555700C57D84 /* CustomTableViewCell.swift */,
 				30AE0BA32077092500F44AD0 /* AppDelegate.swift */,
 				30AE0BA52077092500F44AD0 /* ViewController.swift */,
 				30AE0BA72077092500F44AD0 /* Main.storyboard */,
@@ -64,6 +86,14 @@
 			path = SearchIOS;
 			sourceTree = "<group>";
 		};
+		9850B079355A20DF8C93BC16 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DE14D06BC87A2A99EA6350FF /* Pods_SearchIOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30AE0BB22077092500F44AD0 /* Build configuration list for PBXNativeTarget "SearchIOS" */;
 			buildPhases = (
+				1F103CC1CFCF1ECAB921E8DF /* [CP] Check Pods Manifest.lock */,
 				30AE0B9C2077092500F44AD0 /* Sources */,
 				30AE0B9D2077092500F44AD0 /* Frameworks */,
 				30AE0B9E2077092500F44AD0 /* Resources */,
+				39F8548BECD4CC9A4B867CE2 /* [CP] Embed Pods Frameworks */,
+				EA306A95C0702C949B06C38A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,12 +164,83 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1F103CC1CFCF1ECAB921E8DF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SearchIOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		39F8548BECD4CC9A4B867CE2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SearchIOS/Pods-SearchIOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireSwiftyJSON/AlamofireSwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
+				"${BUILT_PRODUCTS_DIR}/EasyToast/EasyToast.framework",
+				"${BUILT_PRODUCTS_DIR}/McPicker/McPicker.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftSpinner/SwiftSpinner.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireSwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EasyToast.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/McPicker.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftSpinner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SearchIOS/Pods-SearchIOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA306A95C0702C949B06C38A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SearchIOS/Pods-SearchIOS-resources.sh",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SearchIOS/Pods-SearchIOS-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		30AE0B9C2077092500F44AD0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				30AE0BA62077092500F44AD0 /* ViewController.swift in Sources */,
+				30212A27207945EC00C57D84 /* TableViewController.swift in Sources */,
+				30212A2B2079555700C57D84 /* CustomTableViewCell.swift in Sources */,
 				30AE0BA42077092500F44AD0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +376,7 @@
 		};
 		30AE0BB32077092500F44AD0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 319AEEFF13304C9715059143 /* Pods-SearchIOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -286,6 +391,7 @@
 		};
 		30AE0BB42077092500F44AD0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7DBE0DAF84C3D626AF235DD9 /* Pods-SearchIOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

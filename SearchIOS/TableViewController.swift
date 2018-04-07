@@ -12,32 +12,29 @@ import Alamofire
 import AlamofireSwiftyJSON
 
 class TableViewController: UIViewController {
+    
     var url = ""
+    @IBOutlet weak var tblJSON: UITableView!
+    var arrRes = [[String:AnyObject]]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("url found 123 = " + url);
+        self.tblJSON.tableFooterView = UIView(frame: CGRect.zero)
+        tblJSON.rowHeight = 70
+        print("url = " + url);
         getResults();
-        //SwiftSpinner.show("Searching")
-        //SwiftSpinner.hide()
-
-        // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func getResults() {
         SwiftSpinner.show("Searching")
         print ("url = " + url)
         Alamofire.request(url).responseSwiftyJSON { response in
             let places = response.result.value //A JSON object
-            //print (places)
             if places!["status"] == "OK" {
-                //places!["results"].count
-                
+                if let resData = places!["results"].arrayObject {
+                    self.arrRes = resData as! [[String:AnyObject]]
+                }
+                self.tblJSON.reloadData()
             }
             else if places!["status"] == "ZERO_RESULTS" {
                 self.view.showToast("No results", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
@@ -45,22 +42,33 @@ class TableViewController: UIViewController {
             else {
                 self.view.showToast("Error in retrieving details", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
             }
-            
-//            let isSuccess = response.result.isSuccess
-//            if (isSuccess && (json != nil)) {
-//                //do something
-//            }
+
             SwiftSpinner.hide()
         }
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
-    */
+    
+}
 
+extension TableViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrRes.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CustomTableViewCell
+        var dict = arrRes[(indexPath as NSIndexPath).row]
+        cell.name.text = dict["name"] as? String
+        cell.address.text = dict["vicinity"] as? String
+        return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 }
