@@ -14,8 +14,10 @@ import AlamofireSwiftyJSON
 class TableViewController: UIViewController,UIGestureRecognizerDelegate {
     
     var url = ""
+    var currPageIndex = 0
     @IBOutlet weak var tblJSON: UITableView!
     var arrRes = [[String:AnyObject]]()
+    var nextPageTokens = [String]()
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var prevBtn: UIButton!
     
@@ -31,7 +33,7 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
     }
 
     func getResults() {
-        SwiftSpinner.show("Searching")
+        SwiftSpinner.show("Searching..")
         print ("url = " + url)
         Alamofire.request(url).responseSwiftyJSON { response in
             let places = response.result.value //A JSON object
@@ -40,6 +42,13 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
                     self.arrRes = resData as! [[String:AnyObject]]
                 }
                 self.prevBtn.isEnabled = false;
+                if let val = places?["next_page_token"] {
+                    self.nextPageTokens.append(val.string!)
+                    self.nextBtn.isEnabled = true
+                }
+                else {
+                    self.nextBtn.isEnabled = false
+                }
                 self.tblJSON.reloadData()
             }
             else if places!["status"] == "ZERO_RESULTS" {
@@ -56,8 +65,56 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
             SwiftSpinner.hide()
         }
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    
+    @IBAction func getNextPage(_ sender: UIButton) {
+        var token = self.nextPageTokens[currPageIndex]
+        var tempUrl = "http://placesearch-env.us-east-2.elasticbeanstalk.com/result?next_page_token=" + token.replacingOccurrences(of: " ", with: "")
+        SwiftSpinner.show("Getting Next Page..")
+        print ("url = " + url)
+        Alamofire.request(tempUrl).responseSwiftyJSON { response in
+            let places = response.result.value //A JSON object
+            if places!["status"] == "OK" {
+                if let resData = places!["results"].arrayObject {
+                    self.arrRes = resData as! [[String:AnyObject]]
+                }
+                if self.currPageIndex == 0 {
+                    self.prevBtn.isEnabled = false;
+                }
+                else {
+                    self.prevBtn.isEnabled = true;
+                }
+                if let val = places?["next_page_token"] {
+                    if val != nil {
+                        self.nextPageTokens.append(val.string!)
+                        self.nextBtn.isEnabled = true
+                    }
+                    else {
+                        self.nextBtn.isEnabled = false
+                    }
+                }
+                else {
+                    self.nextBtn.isEnabled = false
+                }
+                self.tblJSON.reloadData()
+            }
+            else if places!["status"] == "ZERO_RESULTS" {
+                self.view.showToast("No results", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
+                self.prevBtn.isEnabled = false
+                self.nextBtn.isEnabled = false
+            }
+            else {
+                self.view.showToast("Error in retrieving details", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
+                self.prevBtn.isEnabled = false
+                self.nextBtn.isEnabled = false
+            }
+            SwiftSpinner.hide()
+        }
+        self.currPageIndex += 1
     }
     
 }
