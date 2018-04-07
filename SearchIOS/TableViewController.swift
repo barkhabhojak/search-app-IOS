@@ -14,7 +14,7 @@ class TableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        SwiftSpinner.show("Searching")
+        //SwiftSpinner.show("Searching")
         //SwiftSpinner.hide()
 
         // Do any additional setup after loading the view.

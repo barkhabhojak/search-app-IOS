@@ -13,7 +13,7 @@ import EasyToast
 
 class ViewController: UIViewController {
     
-    var keyword = ""
+    var keyword = "pizza"
     var category = "Default"
     var location = ""
     var locationString = "Your Location"
