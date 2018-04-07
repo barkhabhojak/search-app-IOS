@@ -18,12 +18,12 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
     @IBOutlet weak var tblJSON: UITableView!
     var arrRes = [[String:AnyObject]]()
     var nextPageTokens = [String]()
+    var pid = ""
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var prevBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.tblJSON.tableFooterView = UIView(frame: CGRect.zero)
         tblJSON.rowHeight = 70
 //        tblJSON.separatorStyle = UITableViewCellSeparatorStyle.singleLine
@@ -74,7 +74,7 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
     @IBAction func getNextPage(_ sender: UIButton) {
         var token = self.nextPageTokens[currPageIndex]
         var tempUrl = "http://placesearch-env.us-east-2.elasticbeanstalk.com/result?next_page_token=" + token.replacingOccurrences(of: " ", with: "")
-        SwiftSpinner.show("Getting Next Page..")
+        SwiftSpinner.show("Loading Next Page..")
         print ("next url = " + url)
         Alamofire.request(tempUrl).responseSwiftyJSON { response in
             let places = response.result.value //A JSON object
@@ -126,7 +126,7 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
         else {
             tempUrl = url
         }
-        SwiftSpinner.show("Getting Previous Page..")
+        SwiftSpinner.show("Loading Previous Page..")
         print ("prev url = " + url)
         Alamofire.request(tempUrl).responseSwiftyJSON { response in
             let places = response.result.value //A JSON object
@@ -163,6 +163,16 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
         self.currPageIndex -= 1
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is InfoViewController
+        {
+            let vc = segue.destination as? InfoViewController
+            vc?.placeId = self.pid
+            vc?.url = self.url
+        }
+    }
+    
 }
 
 extension TableViewController: UITableViewDelegate, UITableViewDataSource {
@@ -196,6 +206,8 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
         //print(cell.name.text as! String)
         print(cell.placeId)
+        pid = cell.placeId
+        performSegue(withIdentifier: "details", sender: nil)
     }
     
 }

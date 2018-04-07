@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		30212A27207945EC00C57D84 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30212A26207945EC00C57D84 /* TableViewController.swift */; };
 		30212A2B2079555700C57D84 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30212A2A2079555700C57D84 /* CustomTableViewCell.swift */; };
+		30212A2D20798CE400C57D84 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30212A2C20798CE400C57D84 /* InfoViewController.swift */; };
 		30AE0BA42077092500F44AD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AE0BA32077092500F44AD0 /* AppDelegate.swift */; };
 		30AE0BA62077092500F44AD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AE0BA52077092500F44AD0 /* ViewController.swift */; };
 		30AE0BA92077092500F44AD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30AE0BA72077092500F44AD0 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		30212A26207945EC00C57D84 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		30212A2A2079555700C57D84 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		30212A2C20798CE400C57D84 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		30AE0BA02077092500F44AD0 /* SearchIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30AE0BA32077092500F44AD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30AE0BA52077092500F44AD0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				30AE0BAA2077092500F44AD0 /* Assets.xcassets */,
 				30AE0BAC2077092500F44AD0 /* LaunchScreen.storyboard */,
 				30AE0BAF2077092500F44AD0 /* Info.plist */,
+				30212A2C20798CE400C57D84 /* InfoViewController.swift */,
 			);
 			path = SearchIOS;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				30212A27207945EC00C57D84 /* TableViewController.swift in Sources */,
 				30212A2B2079555700C57D84 /* CustomTableViewCell.swift in Sources */,
 				30AE0BA42077092500F44AD0 /* AppDelegate.swift in Sources */,
+				30212A2D20798CE400C57D84 /* InfoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

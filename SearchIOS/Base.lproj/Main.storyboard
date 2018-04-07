@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -242,11 +243,87 @@
                         <outlet property="nextBtn" destination="RIe-rU-UD6" id="mPz-Za-Ane"/>
                         <outlet property="prevBtn" destination="xC6-PS-p3h" id="qGI-HN-VPi"/>
                         <outlet property="tblJSON" destination="zpg-UJ-P8E" id="beq-1P-RxU"/>
+                        <segue destination="936-wG-g5Q" kind="show" identifier="details" id="P2c-os-Few"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avW-wc-x9c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-90.400000000000006" y="658.92053973013503"/>
         </scene>
+        <!--Info View Controller-->
+        <scene sceneID="nHU-IF-Yof">
+            <objects>
+                <viewController storyboardIdentifier="InfoViewController" title="Info View Controller" id="936-wG-g5Q" customClass="InfoViewController" customModule="SearchIOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Hht-qR-BT6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IrQ-iT-h07">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <tabBarItem title="Info" image="info" id="7b1-LT-o4N"/>
+                                    <tabBarItem title="Photos" image="photos" id="InX-bR-R4b"/>
+                                    <tabBarItem title="Map" image="maps" id="nWC-xk-roL"/>
+                                    <tabBarItem title="Reviews" image="review" id="nmH-bL-L88"/>
+                                </items>
+                            </tabBar>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LaF-el-uIG">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="mAt-tS-U9B">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" id="4gW-MF-lnM">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5Mg-YO-zap">
+                                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="&lt;"/>
+                                                <connections>
+                                                    <action selector="backBtnClick:" destination="936-wG-g5Q" eventType="touchUpInside" id="Oee-Yc-HVm"/>
+                                                </connections>
+                                            </button>
+                                        </barButtonItem>
+                                        <rightBarButtonItems>
+                                            <barButtonItem style="plain" id="u3A-Uf-X49">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ieF-5K-pda">
+                                                    <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <rect key="contentStretch" x="0.0" y="0.0" width="0.75" height="1"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" id="gUV-my-pR4">
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7mb-hQ-rvN">
+                                                    <rect key="frame" x="185" y="7" width="83" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button"/>
+                                                </button>
+                                            </barButtonItem>
+                                        </rightBarButtonItems>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="taI-Ib-FDH"/>
+                    </view>
+                    <connections>
+                        <segue destination="fYY-gH-ncb" kind="show" identifier="backToTable" id="wYn-lT-Svv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fFS-FE-L4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1220" y="364"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="info" width="30" height="30"/>
+        <image name="maps" width="30" height="30"/>
+        <image name="photos" width="30" height="30"/>
+        <image name="review" width="30" height="30"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="wYn-lT-Svv"/>
+    </inferredMetricsTieBreakers>
 </document>
