@@ -15,6 +15,7 @@ import AlamofireSwiftyJSON
 
 class InfoViewController: UIViewController {
 
+    @IBOutlet weak var navbar: UINavigationItem!
     var placeId = ""
     var url = ""
     var name = ""
@@ -23,11 +24,11 @@ class InfoViewController: UIViewController {
     let placesClient = GMSPlacesClient()
     let apiKey = "AIzaSyAU5hyg6Ky-pOHejxe2u8trKteehGkSNrk"
     
-    @IBOutlet weak var navbar: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navbar.title = name
+        print("info view controller")
+        navbar.title = self.name
         getDetails()
     }
 
@@ -49,9 +50,10 @@ class InfoViewController: UIViewController {
         var tempU = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + self.placeId + "&key=" + self.apiKey
         Alamofire.request(tempU).responseSwiftyJSON { response in
             let places = response.result.value
+            //print(places)
             if places!["status"] == "OK" {
                 var resData = places!["result"]
-                self.name = resData["name"].string!
+                //self.name = resData["name"].string!
                 self.address =  resData["formatted_address"].string!
                 if (resData["website"].string) != nil {
                     self.web = resData["website"].string!

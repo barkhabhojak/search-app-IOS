@@ -243,7 +243,7 @@
                         <outlet property="nextBtn" destination="RIe-rU-UD6" id="mPz-Za-Ane"/>
                         <outlet property="prevBtn" destination="xC6-PS-p3h" id="qGI-HN-VPi"/>
                         <outlet property="tblJSON" destination="zpg-UJ-P8E" id="beq-1P-RxU"/>
-                        <segue destination="936-wG-g5Q" kind="show" identifier="details" id="P2c-os-Few"/>
+                        <segue destination="CgE-nZ-V1T" kind="show" identifier="details" id="8Hp-aY-uWu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avW-wc-x9c" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -253,7 +253,7 @@
         <!--Info View Controller-->
         <scene sceneID="nHU-IF-Yof">
             <objects>
-                <viewController storyboardIdentifier="InfoViewController" title="Info View Controller" id="936-wG-g5Q" customClass="InfoViewController" customModule="SearchIOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Info View Controller" id="936-wG-g5Q" customClass="InfoViewController" customModule="SearchIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Hht-qR-BT6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -316,7 +316,6 @@
                     </view>
                     <connections>
                         <outlet property="navbar" destination="mAt-tS-U9B" id="P5d-qU-EpK"/>
-                        <segue destination="fYY-gH-ncb" kind="show" identifier="backToTable" id="wYn-lT-Svv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFS-FE-L4z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -443,10 +442,10 @@
             </objects>
             <point key="canvasLocation" x="3460" y="2968"/>
         </scene>
-        <!--View Controller-->
+        <!--Info View Controller-->
         <scene sceneID="WoD-3l-k0t">
             <objects>
-                <viewController id="UPt-bX-cFG" sceneMemberID="viewController">
+                <viewController id="UPt-bX-cFG" customClass="InfoViewController" customModule="SearchIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X07-WG-26P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -474,19 +473,25 @@
                                     <rect key="frame" x="251" y="11" width="50" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="forward-arrow"/>
+                                    <connections>
+                                        <action selector="shareTwitterClick:" destination="UPt-bX-cFG" eventType="touchUpInside" id="fKL-2X-hId"/>
+                                    </connections>
                                 </button>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="navbar" destination="zK6-S9-UdH" id="6AJ-cC-fVm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hGf-G9-nCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3460" y="876"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab View Controller-->
         <scene sceneID="xEW-LU-KXG">
             <objects>
-                <tabBarController id="CgE-nZ-V1T" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabViewController" id="CgE-nZ-V1T" customClass="TabViewController" customModule="SearchIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OpX-5R-3L8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -588,7 +593,4 @@
         <image name="photos" width="30" height="30"/>
         <image name="review" width="30" height="30"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="uyx-8F-Yy2"/>
-    </inferredMetricsTieBreakers>
 </document>

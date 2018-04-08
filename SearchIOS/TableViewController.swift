@@ -29,13 +29,12 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
         tblJSON.rowHeight = 70
 //        tblJSON.separatorStyle = UITableViewCellSeparatorStyle.singleLine
 //        tblJSON.separatorColor = UIColor.gray
-        print("url = " + url);
+        print("table view url = " + url);
         getResults();
     }
 
     func getResults() {
         SwiftSpinner.show("Searching..")
-        print ("url = " + url)
         Alamofire.request(url).responseSwiftyJSON { response in
             let places = response.result.value //A JSON object
             if places!["status"] == "OK" {
@@ -182,9 +181,9 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if segue.destination is InfoViewController
+        if segue.destination is TabViewController
         {
-            let vc = segue.destination as? InfoViewController
+            let vc = segue.destination as? TabViewController
             vc?.placeId = self.pid
             vc?.url = self.url
             vc?.name = self.name
