@@ -19,6 +19,7 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
     var arrRes = [[String:AnyObject]]()
     var nextPageTokens = [String]()
     var pid = ""
+    var name = ""
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var prevBtn: UIButton!
     
@@ -170,6 +171,7 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
             let vc = segue.destination as? InfoViewController
             vc?.placeId = self.pid
             vc?.url = self.url
+            vc?.name = self.name
         }
     }
     
@@ -207,6 +209,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         //print(cell.name.text as! String)
         print(cell.placeId)
         pid = cell.placeId
+        name = cell.name.text!
         performSegue(withIdentifier: "details", sender: nil)
     }
     

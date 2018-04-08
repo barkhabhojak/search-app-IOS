@@ -12,9 +12,13 @@ class InfoViewController: UIViewController {
 
     var placeId = ""
     var url = ""
+    var name = ""
+    
+    @IBOutlet weak var navbar: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navbar.title = name
         print("in info view controller " + placeId)
     }
 
@@ -34,4 +38,8 @@ class InfoViewController: UIViewController {
     @IBAction func backBtnClick(_ sender: UIButton) {
         performSegue(withIdentifier: "backToTable", sender: nil)
     }
+    
+    @IBAction func shareTwitterClick(_ sender: UIButton) {
+    }
+    
 }

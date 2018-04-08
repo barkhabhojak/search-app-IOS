@@ -286,19 +286,25 @@
                                         </barButtonItem>
                                         <rightBarButtonItems>
                                             <barButtonItem style="plain" id="u3A-Uf-X49">
-                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ieF-5K-pda">
-                                                    <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ieF-5K-pda">
+                                                    <rect key="frame" x="337" y="11" width="22" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <rect key="contentStretch" x="0.0" y="0.0" width="0.75" height="1"/>
-                                                    <state key="normal" title="Button"/>
+                                                    <state key="normal" image="favorite-empty"/>
                                                 </button>
                                             </barButtonItem>
                                             <barButtonItem style="plain" id="gUV-my-pR4">
-                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7mb-hQ-rvN">
-                                                    <rect key="frame" x="185" y="7" width="83" height="30"/>
+                                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7mb-hQ-rvN">
+                                                    <rect key="frame" x="307" y="11" width="22" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button"/>
+                                                    <state key="normal" image="forward-arrow">
+                                                        <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="shareTwitterClick:" destination="936-wG-g5Q" eventType="touchUpInside" id="aIk-7s-e38"/>
+                                                    </connections>
                                                 </button>
+                                                <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </barButtonItem>
                                         </rightBarButtonItems>
                                     </navigationItem>
@@ -309,6 +315,7 @@
                         <viewLayoutGuide key="safeArea" id="taI-Ib-FDH"/>
                     </view>
                     <connections>
+                        <outlet property="navbar" destination="mAt-tS-U9B" id="P5d-qU-EpK"/>
                         <segue destination="fYY-gH-ncb" kind="show" identifier="backToTable" id="wYn-lT-Svv"/>
                     </connections>
                 </viewController>
@@ -318,6 +325,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="favorite-empty" width="22" height="22"/>
+        <image name="forward-arrow" width="22" height="22"/>
         <image name="info" width="30" height="30"/>
         <image name="maps" width="30" height="30"/>
         <image name="photos" width="30" height="30"/>
