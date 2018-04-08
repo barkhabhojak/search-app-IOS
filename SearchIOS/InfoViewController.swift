@@ -35,8 +35,8 @@ class InfoViewController: UIViewController {
         addLabel.text = (self.infoDetails["address"] as! String)
         phoneLabel.text = (self.infoDetails["number"] as! String)
         var price = Int((self.infoDetails["price"] as! String))
-        var priceText = ""
-        if price != nil {
+        var priceText = "Free"
+        if price != nil && price! > 0 {
             priceText = String(repeating: "$", count: price!)
         }
         var rat = Double((self.infoDetails["rating"] as! String))
