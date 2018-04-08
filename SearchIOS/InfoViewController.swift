@@ -21,10 +21,9 @@ class InfoViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        print("info view controller")
-        navbar.title = self.name
-        //getDetails()
+            super.viewDidLoad()
+            print("info view controller")
+            navbar.title = self.name
     }
 
     override func didReceiveMemoryWarning() {

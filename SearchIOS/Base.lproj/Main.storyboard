@@ -322,10 +322,10 @@
             </objects>
             <point key="canvasLocation" x="1220" y="364"/>
         </scene>
-        <!--View Controller-->
+        <!--Photo View Controller-->
         <scene sceneID="Zzn-gk-bOU">
             <objects>
-                <viewController id="2OT-tN-Kda" sceneMemberID="viewController">
+                <viewController id="2OT-tN-Kda" customClass="PhotoViewController" customModule="SearchIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yo0-Lg-1Bv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -353,19 +353,25 @@
                                     <rect key="frame" x="251" y="11" width="50" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="forward-arrow"/>
+                                    <connections>
+                                        <action selector="shareTwitterClick:" destination="2OT-tN-Kda" eventType="touchUpInside" id="wRD-bN-dnl"/>
+                                    </connections>
                                 </button>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="navbar" destination="RCE-z7-POJ" id="gUG-cL-O1a"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ngC-9U-hqE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3460" y="1542"/>
         </scene>
-        <!--View Controller-->
+        <!--Maps View Controller-->
         <scene sceneID="QS3-4n-hwG">
             <objects>
-                <viewController id="Alm-Dh-dLe" sceneMemberID="viewController">
+                <viewController id="Alm-Dh-dLe" customClass="MapsViewController" customModule="SearchIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1f0-Lj-r1V">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -393,19 +399,25 @@
                                     <rect key="frame" x="251" y="11" width="50" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="forward-arrow"/>
+                                    <connections>
+                                        <action selector="shareTwitterClick:" destination="Alm-Dh-dLe" eventType="touchUpInside" id="7p6-Hj-BS1"/>
+                                    </connections>
                                 </button>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="navbar" destination="iu3-Na-AU3" id="tl5-h1-59r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w6n-QD-2Qr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3460" y="2275"/>
         </scene>
-        <!--View Controller-->
+        <!--Review View Controller-->
         <scene sceneID="fvB-D5-1WE">
             <objects>
-                <viewController id="x5z-E3-56O" sceneMemberID="viewController">
+                <viewController id="x5z-E3-56O" customClass="ReviewViewController" customModule="SearchIOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="id1-U9-PV1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -433,10 +445,16 @@
                                     <rect key="frame" x="251" y="11" width="50" height="22"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <state key="normal" image="forward-arrow"/>
+                                    <connections>
+                                        <action selector="shareTwitterClick:" destination="x5z-E3-56O" eventType="touchUpInside" id="B0W-Vc-ATi"/>
+                                    </connections>
                                 </button>
                             </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
+                    <connections>
+                        <outlet property="navbar" destination="8S4-I5-y5f" id="8Qp-Cg-vAu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Okt-gC-Of3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -481,7 +499,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <outlet property="navbar" destination="zK6-S9-UdH" id="6AJ-cC-fVm"/>
+                        <outlet property="navbar" destination="zK6-S9-UdH" id="wWR-yM-rci"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hGf-G9-nCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
