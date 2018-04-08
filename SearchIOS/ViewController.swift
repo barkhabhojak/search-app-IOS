@@ -133,7 +133,7 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let backItem = UIBarButtonItem()
         backItem.title = ""
-        navigationItem.backBarButtonItem = backItem
+        navbar.backBarButtonItem = backItem
         if segue.destination is TableViewController
         {
             let vc = segue.destination as? TableViewController

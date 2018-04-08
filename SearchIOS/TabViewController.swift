@@ -10,6 +10,7 @@ import UIKit
 import SwiftSpinner
 import Alamofire
 import AlamofireSwiftyJSON
+import SafariServices
 
 class TabViewController: UITabBarController {
     
@@ -18,19 +19,14 @@ class TabViewController: UITabBarController {
     var name = ""
     var address = ""
     var web = ""
+    var favSelect = false
     let apiKey = "AIzaSyAU5hyg6Ky-pOHejxe2u8trKteehGkSNrk"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = self.name
         //print(self.viewControllers?.count)
         print("tab url = \(url)" )
         getDetails()
-        var svc = self.viewControllers![0]
-        var info = svc.childViewControllers[0] as! InfoViewController
-        info.name = self.name
-        info.url = self.url
-        info.placeId = self.placeId
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,29 +53,77 @@ class TabViewController: UITabBarController {
                 else {
                     self.web = resData["url"].string!
                 }
-                var svc = self.viewControllers![0]
-                var info = svc.childViewControllers[0] as! InfoViewController
-                info.address = self.address
-                info.web = self.web
-                var svc1 = self.viewControllers![1]
-                var photo = svc1.childViewControllers[0] as! PhotoViewController
-                photo.name = self.name
-                photo.address = self.address
-                photo.web = self.web
-                var svc2 = self.viewControllers![2]
-                var map = svc2.childViewControllers[0] as! MapsViewController
-                map.name = self.name
-                map.address = self.address
-                map.web = self.web
-                var svc3 = self.viewControllers![3]
-                var rev = svc3.childViewControllers[0] as! ReviewViewController
-                rev.name = self.name
-                rev.address = self.address
-                rev.web = self.web
+                var svc = self.viewControllers![0] as! InfoViewController
+                svc.address = self.address
+                svc.name = self.name
+                svc.url = self.url
+                svc.placeId = self.placeId
+                svc.web = self.web
+                var svc1 = self.viewControllers![1] as! PhotoViewController
+                svc1.name = self.name
+                svc1.address = self.address
+                svc1.web = self.web
+                var svc2 = self.viewControllers![2] as! MapsViewController
+                svc2.name = self.name
+                svc2.address = self.address
+                svc2.web = self.web
+                var svc3 = self.viewControllers![3] as! ReviewViewController
+                svc3.name = self.name
+                svc3.address = self.address
+                svc3.web = self.web
                 //self.setValuesOfControl()
+                self.setNav()
             }
         }
         SwiftSpinner.hide()
     }
     
+    func setNav() {
+        self.title = self.name
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        self.navigationItem.backBarButtonItem = backItem
+        let share = UIBarButtonItem(image: UIImage(named: "forward-arrow"),
+                                    style: UIBarButtonItemStyle.plain ,
+                                    target: self, action: #selector(onShareClick))
+        var fav = UIBarButtonItem()
+        if !self.favSelect {
+            fav = UIBarButtonItem(image: UIImage(named: "favorite-empty"),
+                                      style: UIBarButtonItemStyle.plain ,
+                                      target: self, action: #selector(favToggle))
+        }
+        else {
+            fav = UIBarButtonItem(image: UIImage(named: "favorite-filled"),
+                                      style: UIBarButtonItemStyle.plain ,
+                                      target: self, action: Selector(("removeFromFav:")))
+        }
+        self.navigationItem.rightBarButtonItems = [fav,share]
+    }
+    
+    @objc func onShareClick() {
+        var text = "Check out \(self.name) located at \(self.address). Website: "
+        text = text.replacingOccurrences(of: " ", with: "+")
+        let link = "https://twitter.com/intent/tweet?text=\(text)&url=\(self.web)";
+        let svc = SFSafariViewController(url: URL(string: link)!)
+        present(svc, animated: true, completion: nil)
+    }
+    
+    
+    @objc func favToggle() {
+        if self.favSelect {
+            self.favSelect = false
+            var btnFav = UIBarButtonItem(image: UIImage(named: "favorite-empty"),
+                                  style: UIBarButtonItemStyle.plain ,
+                                  target: self, action: #selector(favToggle))
+            self.navigationItem.rightBarButtonItems![0] = btnFav
+
+        }
+        else {
+            self.favSelect = true
+            var btnFav = UIBarButtonItem(image: UIImage(named: "favorite-filled"),
+                                         style: UIBarButtonItemStyle.plain ,
+                                         target: self, action: #selector(favToggle))
+            self.navigationItem.rightBarButtonItems![0] = btnFav
+        }
+    }
 }
