@@ -7,11 +7,7 @@
 //
 
 import UIKit
-import GooglePlaces
-import SwiftSpinner
 import SafariServices
-import Alamofire
-import AlamofireSwiftyJSON
 
 class InfoViewController: UIViewController {
 
@@ -21,15 +17,14 @@ class InfoViewController: UIViewController {
     var name = ""
     var address = ""
     var web = ""
-    let placesClient = GMSPlacesClient()
-    let apiKey = "AIzaSyAU5hyg6Ky-pOHejxe2u8trKteehGkSNrk"
+    //let placesClient = GMSPlacesClient()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("info view controller")
         navbar.title = self.name
-        getDetails()
+        //getDetails()
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,27 +37,6 @@ class InfoViewController: UIViewController {
         {
             let vc = segue.destination as? TableViewController
             vc?.url = self.url
-        }
-    }
-    
-    func getDetails() {
-        SwiftSpinner.show("Loading..")
-        var tempU = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + self.placeId + "&key=" + self.apiKey
-        Alamofire.request(tempU).responseSwiftyJSON { response in
-            let places = response.result.value
-            //print(places)
-            if places!["status"] == "OK" {
-                var resData = places!["result"]
-                //self.name = resData["name"].string!
-                self.address =  resData["formatted_address"].string!
-                if (resData["website"].string) != nil {
-                    self.web = resData["website"].string!
-                }
-                else {
-                    self.web = resData["url"].string!
-                }
-            }
-            SwiftSpinner.hide()
         }
     }
     
@@ -79,20 +53,20 @@ class InfoViewController: UIViewController {
     }
     
     
-    func apiClient() {
-        placesClient.lookUpPlaceID(self.placeId, callback: { (place, error) -> Void in
-            if let error = error {
-                print("lookup place id query error: \(error.localizedDescription)")
-                return
-            }
-
-            guard let place = place else {
-                print("No place details for \(self.placeId)")
-                return
-            }
-            self.address = place.formattedAddress!
-            print(place)
-        })
-    }
+//    func apiClient() {
+//        placesClient.lookUpPlaceID(self.placeId, callback: { (place, error) -> Void in
+//            if let error = error {
+//                print("lookup place id query error: \(error.localizedDescription)")
+//                return
+//            }
+//
+//            guard let place = place else {
+//                print("No place details for \(self.placeId)")
+//                return
+//            }
+//            self.address = place.formattedAddress!
+//            print(place)
+//        })
+//    }
     
 }
