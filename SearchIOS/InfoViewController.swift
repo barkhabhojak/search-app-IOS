@@ -9,21 +9,25 @@
 import UIKit
 import GooglePlaces
 import SwiftSpinner
+import SafariServices
+
 
 class InfoViewController: UIViewController {
 
     var placeId = ""
     var url = ""
     var name = ""
+    var address = ""
     let placesClient = GMSPlacesClient()
     
     @IBOutlet weak var navbar: UINavigationItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        SwiftSpinner.show("Loading..")
         navbar.title = name
-        print("in info view controller " + placeId)
         getDetails()
+        SwiftSpinner.hide()
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,7 +44,6 @@ class InfoViewController: UIViewController {
     }
     
     func getDetails() {
-        SwiftSpinner.show("Loading..")
         placesClient.lookUpPlaceID(self.placeId, callback: { (place, error) -> Void in
             if let error = error {
                 print("lookup place id query error: \(error.localizedDescription)")
@@ -51,8 +54,8 @@ class InfoViewController: UIViewController {
                 print("No place details for \(self.placeId)")
                 return
             }
+            self.address = place.formattedAddress!
             print(place)
-            SwiftSpinner.hide()
         })
     }
     
@@ -61,6 +64,12 @@ class InfoViewController: UIViewController {
     }
     
     @IBAction func shareTwitterClick(_ sender: UIButton) {
+        var text = "Check out " + self.name + " located at " + self.address + ". Website: ";
+        text = text.replacingOccurrences(of: " ", with: "+")
+        var link = "https://twitter.com/intent/tweet?text="+text+"&url="+url;
+        print(link)
+        let svc = SFSafariViewController(url: URL(string: link)!)
+        present(svc, animated: true, completion: nil)
     }
     
 }
