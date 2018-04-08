@@ -19,6 +19,7 @@ class TabViewController: UITabBarController {
     var name = ""
     var address = ""
     var web = ""
+    var infoDetails = [String:Any]()
     var favSelect = false
     let apiKey = "AIzaSyAU5hyg6Ky-pOHejxe2u8trKteehGkSNrk"
 
@@ -40,6 +41,7 @@ class TabViewController: UITabBarController {
     func getDetails() {
         SwiftSpinner.show("Loading..")
         var tempU = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + self.placeId + "&key=" + self.apiKey
+        print("temp url = \(tempU)")
         Alamofire.request(tempU).responseSwiftyJSON { response in
             let places = response.result.value
             //print(places)
@@ -49,16 +51,22 @@ class TabViewController: UITabBarController {
                 self.address =  resData["formatted_address"].string!
                 if (resData["website"].string) != nil {
                     self.web = resData["website"].string!
+                    self.infoDetails["website"] = resData["website"].string!
                 }
                 else {
                     self.web = resData["url"].string!
+                    self.infoDetails["website"] = ""
                 }
+                self.infoDetails["name"] = self.name
+                self.infoDetails["address"] = self.address
+                self.infoDetails["rating"] = String(describing: resData["rating"])
+                self.infoDetails["number"] = String(describing: resData["international_phone_number"])
+                self.infoDetails["price"] = String(describing: resData["price_level"])
+                self.infoDetails["url"] = resData["url"].string!
+                print("in table controller \(self.infoDetails)")
                 var svc = self.viewControllers![0] as! InfoViewController
-                svc.address = self.address
-                svc.name = self.name
-                svc.url = self.url
-                svc.placeId = self.placeId
-                svc.web = self.web
+                svc.infoDetails = self.infoDetails
+                svc.addLabelsToPage()
                 var svc1 = self.viewControllers![1] as! PhotoViewController
                 svc1.name = self.name
                 svc1.address = self.address
