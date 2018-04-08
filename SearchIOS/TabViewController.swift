@@ -63,7 +63,6 @@ class TabViewController: UITabBarController {
                 self.infoDetails["number"] = String(describing: resData["international_phone_number"])
                 self.infoDetails["price"] = String(describing: resData["price_level"])
                 self.infoDetails["url"] = resData["url"].string!
-                print("in table controller \(self.infoDetails)")
                 var svc = self.viewControllers![0] as! InfoViewController
                 svc.infoDetails = self.infoDetails
                 svc.addLabelsToPage()

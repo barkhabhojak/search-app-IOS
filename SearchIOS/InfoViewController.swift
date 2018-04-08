@@ -50,9 +50,6 @@ class InfoViewController: UIViewController {
         priceLabel.text = priceText
         websiteLabel.text = (self.infoDetails["website"] as! String)
         gPageLabel.text = (self.infoDetails["url"] as! String)
-        phoneLabel.isEditable = false
-        websiteLabel.isEditable = false
-        gPageLabel.isEditable = false
     }
  
 }
