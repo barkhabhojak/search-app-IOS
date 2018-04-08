@@ -53,18 +53,34 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
                 self.tblJSON.reloadData()
             }
             else if places!["status"] == "ZERO_RESULTS" {
-                self.view.showToast("No results", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
+                self.errorMessage(str: "no results")
                 self.prevBtn.isEnabled = false
                 self.nextBtn.isEnabled = false
             }
             else {
-                self.view.showToast("Error in retrieving details", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
+                self.errorMessage(str: "error")
                 self.prevBtn.isEnabled = false
                 self.nextBtn.isEnabled = false
             }
 
             SwiftSpinner.hide()
         }
+    }
+    
+    func errorMessage(str: String) {
+        let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+        let messageLabel = UILabel(frame: rect)
+        if str == "no results" {
+            messageLabel.text = "No results found."
+        }
+        else {
+            messageLabel.text = "Error in retrieving details."
+        }
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = .center;
+        messageLabel.sizeToFit()
+        self.tblJSON.backgroundView = messageLabel;
+        self.tblJSON.separatorStyle = .none;
     }
     
     override func didReceiveMemoryWarning() {
@@ -104,12 +120,12 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
                 self.tblJSON.reloadData()
             }
             else if places!["status"] == "ZERO_RESULTS" {
-                self.view.showToast("No results", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
+                self.errorMessage(str: "no results")
                 self.prevBtn.isEnabled = false
                 self.nextBtn.isEnabled = false
             }
             else {
-                self.view.showToast("Error in retrieving details", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
+                self.errorMessage(str: "error")
                 self.prevBtn.isEnabled = false
                 self.nextBtn.isEnabled = false
             }
@@ -150,12 +166,12 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
                 self.tblJSON.reloadData()
             }
             else if places!["status"] == "ZERO_RESULTS" {
-                self.view.showToast("No results", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
+                self.errorMessage(str: "no results")
                 self.prevBtn.isEnabled = false
                 self.nextBtn.isEnabled = false
             }
             else {
-                self.view.showToast("Error in retrieving details", position: .bottom, popTime: 3, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
+                self.errorMessage(str: "error")
                 self.prevBtn.isEnabled = false
                 self.nextBtn.isEnabled = false
             }

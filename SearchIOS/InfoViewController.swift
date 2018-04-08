@@ -52,10 +52,6 @@ class InfoViewController: UIViewController {
                 return
             }
             print(place)
-//            print("Place name \(place.name)")
-//            print("Place address \(place.formattedAddress)")
-//            print("Place placeID \(place.placeID)")
-//            print("Place attributions \(place.attributions)")
             SwiftSpinner.hide()
         })
     }
