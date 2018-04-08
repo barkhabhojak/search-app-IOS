@@ -23,12 +23,14 @@ class ViewController: UIViewController {
     var latitude = ""
     var longitude = ""
     
+    @IBOutlet weak var navbar: UINavigationItem!
     @IBOutlet weak var keywordTextField: UITextField!
     @IBOutlet weak var distanceTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var mcTextField: McTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        navbar.title = "Place Search"
         let locManager = CLLocationManager()
         locManager.requestWhenInUseAuthorization()
         var currentLocation: CLLocation!
@@ -128,15 +130,16 @@ class ViewController: UIViewController {
         return newStr
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-    {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
         if segue.destination is TableViewController
         {
             let vc = segue.destination as? TableViewController
             vc?.url = self.url
         }
     }
-
 }
 
 extension String {

@@ -22,6 +22,7 @@ class TabViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = self.name
         //print(self.viewControllers?.count)
         print("tab url = \(url)" )
         getDetails()

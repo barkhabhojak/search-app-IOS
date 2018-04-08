@@ -25,6 +25,7 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Search Results"
         self.tblJSON.tableFooterView = UIView(frame: CGRect.zero)
         tblJSON.rowHeight = 70
 //        tblJSON.separatorStyle = UITableViewCellSeparatorStyle.singleLine
@@ -181,6 +182,9 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
+        let backItem = UIBarButtonItem()
+        backItem.title = ""
+        navigationItem.backBarButtonItem = backItem
         if segue.destination is TabViewController
         {
             let vc = segue.destination as? TabViewController
