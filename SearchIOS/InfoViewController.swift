@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import GooglePlaces
+import SwiftSpinner
 
 class InfoViewController: UIViewController {
 
     var placeId = ""
     var url = ""
     var name = ""
+    let placesClient = GMSPlacesClient()
     
     @IBOutlet weak var navbar: UINavigationItem!
     
@@ -20,6 +23,7 @@ class InfoViewController: UIViewController {
         super.viewDidLoad()
         navbar.title = name
         print("in info view controller " + placeId)
+        getDetails()
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,6 +37,27 @@ class InfoViewController: UIViewController {
             let vc = segue.destination as? TableViewController
             vc?.url = self.url
         }
+    }
+    
+    func getDetails() {
+        SwiftSpinner.show("Loading..")
+        placesClient.lookUpPlaceID(self.placeId, callback: { (place, error) -> Void in
+            if let error = error {
+                print("lookup place id query error: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let place = place else {
+                print("No place details for \(self.placeId)")
+                return
+            }
+            print(place)
+//            print("Place name \(place.name)")
+//            print("Place address \(place.formattedAddress)")
+//            print("Place placeID \(place.placeID)")
+//            print("Place attributions \(place.attributions)")
+            SwiftSpinner.hide()
+        })
     }
     
     @IBAction func backBtnClick(_ sender: UIButton) {

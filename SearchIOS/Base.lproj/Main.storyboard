@@ -264,9 +264,9 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <tabBarItem title="Info" image="info" id="7b1-LT-o4N"/>
-                                    <tabBarItem title="Photos" image="photos" id="InX-bR-R4b"/>
-                                    <tabBarItem title="Map" image="maps" id="nWC-xk-roL"/>
-                                    <tabBarItem title="Reviews" image="review" id="nmH-bL-L88"/>
+                                    <tabBarItem enabled="NO" title="Photos" image="photos" id="InX-bR-R4b"/>
+                                    <tabBarItem enabled="NO" title="Map" image="maps" id="nWC-xk-roL"/>
+                                    <tabBarItem enabled="NO" title="Reviews" image="review" id="nmH-bL-L88"/>
                                 </items>
                             </tabBar>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LaF-el-uIG">
