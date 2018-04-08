@@ -224,7 +224,7 @@
                                     <navigationItem title="Search Results" id="tWV-fo-xeP">
                                         <barButtonItem key="leftBarButtonItem" width="10" style="plain" id="b5D-6z-Ia6">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LA9-FS-bIf">
-                                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="40" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="&lt;"/>
                                                 <connections>
@@ -276,7 +276,7 @@
                                     <navigationItem title="Title" id="mAt-tS-U9B">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="4gW-MF-lnM">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5Mg-YO-zap">
-                                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                                <rect key="frame" x="16" y="7" width="40" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" title="&lt;"/>
                                                 <connections>
@@ -285,17 +285,17 @@
                                             </button>
                                         </barButtonItem>
                                         <rightBarButtonItems>
-                                            <barButtonItem style="plain" id="u3A-Uf-X49">
+                                            <barButtonItem width="10" style="plain" id="u3A-Uf-X49">
                                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ieF-5K-pda">
-                                                    <rect key="frame" x="337" y="11" width="22" height="22"/>
+                                                    <rect key="frame" x="309" y="11" width="50" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <rect key="contentStretch" x="0.0" y="0.0" width="0.75" height="1"/>
                                                     <state key="normal" image="favorite-empty"/>
                                                 </button>
                                             </barButtonItem>
-                                            <barButtonItem style="plain" id="gUV-my-pR4">
+                                            <barButtonItem width="10" style="plain" id="gUV-my-pR4">
                                                 <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7mb-hQ-rvN">
-                                                    <rect key="frame" x="307" y="11" width="22" height="22"/>
+                                                    <rect key="frame" x="251" y="11" width="50" height="22"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" image="forward-arrow">
                                                         <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -333,6 +333,7 @@
         <image name="review" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="P2c-os-Few"/>
         <segue reference="wYn-lT-Svv"/>
     </inferredMetricsTieBreakers>
 </document>
