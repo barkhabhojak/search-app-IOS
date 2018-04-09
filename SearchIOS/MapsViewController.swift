@@ -16,6 +16,8 @@ class MapsViewController: UIViewController {
     var fromName = ""
     var fromAdd = ""
     var web = ""
+    var destLat : Double = 0.0
+    var destLong : Double = 0.0
     
     @IBOutlet weak var fromInputTextField: UITextField!
     @IBOutlet weak var navbar: UINavigationItem!
@@ -40,10 +42,9 @@ class MapsViewController: UIViewController {
 extension MapsViewController: GMSAutocompleteViewControllerDelegate {
     
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        let locationString = place.name + ", " + place.formattedAddress!
         self.fromName = place.name
         self.fromAdd = place.formattedAddress!
-        fromInputTextField.text = locationString
+        fromInputTextField.text = place.formattedAddress!
         dismiss(animated: true, completion: nil)
     }
     
