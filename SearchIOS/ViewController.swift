@@ -104,13 +104,13 @@ class ViewController: UIViewController {
         else if !keyword.replacingOccurrences(of: " ", with: "").isEmpty && !category.replacingOccurrences(of: " ", with: "").isEmpty && !distance.replacingOccurrences(of: " ", with: "").isEmpty && !locationString.replacingOccurrences(of: " ", with: "").isEmpty && distance.isNumeric {
             
             if locationString.lowercased() == "your location" || locationString.lowercased() == "my location" {
-                url = "http://placesearch-env.us-east-2.elasticbeanstalk.com/result?keyw=" + replaceString(str: keyword) + "&category=" + replaceString(str: category) + "&distance=" + replaceString(str: distance) + "&locOpt=curr-loc-" + latitude + "%2C" + longitude
+                url = "http://iosappserver-env.us-east-2.elasticbeanstalk.com/result?keyw=" + replaceString(str: keyword) + "&category=" + replaceString(str: category) + "&distance=" + replaceString(str: distance) + "&locOpt=curr-loc-" + latitude + "%2C" + longitude
             }
             else {
-                url = "http://placesearch-env.us-east-2.elasticbeanstalk.com/result?keyw=" + replaceString(str: keyword) + "&category=" + replaceString(str: category) + "&distance=" + replaceString(str: distance) + "&locOpt=other-loc&loc=" + replaceString(str: locationString)
+                url = "http://iosappserver-env.us-east-2.elasticbeanstalk.com/result?keyw=" + replaceString(str: keyword) + "&category=" + replaceString(str: category) + "&distance=" + replaceString(str: distance) + "&locOpt=other-loc&loc=" + replaceString(str: locationString)
             }
-            //http://placesearch-env.us-east-2.elasticbeanstalk.com/result?keyw=pizza&category=Default&distance=15&locOpt=curr-loc-34.0266%2C-118.2831"
-            //http://placesearch-env.us-east-2.elasticbeanstalk.com/result?keyw=pizza&category=Default&distance=25&locOpt=other-loc&loc=North+Alameda+Street%2C+Los+Angeles%2C+CA%2C+USA
+            //http://iosappserver-env.us-east-2.elasticbeanstalk.com/result?keyw=pizza&category=Default&distance=15&locOpt=curr-loc-34.0266%2C-118.2831"
+            //http://iosappserver-env.us-east-2.elasticbeanstalk.com/result?keyw=pizza&category=Default&distance=25&locOpt=other-loc&loc=North+Alameda+Street%2C+Los+Angeles%2C+CA%2C+USA
             performSegue(withIdentifier: "search", sender: nil)
             
 //            print("keyword = " + keyword)

@@ -90,7 +90,7 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
     
     @IBAction func getNextPage(_ sender: UIButton) {
         var token = self.nextPageTokens[currPageIndex]
-        var tempUrl = "http://placesearch-env.us-east-2.elasticbeanstalk.com/result?next_page_token=" + token.replacingOccurrences(of: " ", with: "")
+        var tempUrl = "http://iosappserver-env.elasticbeanstalk.com/result?next_page_token=" + token.replacingOccurrences(of: " ", with: "")
         SwiftSpinner.show("Loading Next Page..")
         print ("next url = " + url)
         Alamofire.request(tempUrl).responseSwiftyJSON { response in
@@ -138,7 +138,7 @@ class TableViewController: UIViewController,UIGestureRecognizerDelegate {
         var tempUrl = ""
         if self.currPageIndex - 2 >= 0 {
             var token = self.nextPageTokens[currPageIndex-2]
-            tempUrl = "http://placesearch-env.us-east-2.elasticbeanstalk.com/result?next_page_token=" + token.replacingOccurrences(of: " ", with: "")
+            tempUrl = "http://iosappserver-env.us-east-2.elasticbeanstalk.com/result?next_page_token=" + token.replacingOccurrences(of: " ", with: "")
         }
         else {
             tempUrl = url
