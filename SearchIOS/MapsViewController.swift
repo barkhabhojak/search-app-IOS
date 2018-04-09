@@ -31,14 +31,14 @@ class MapsViewController: UIViewController {
     func formMap() {
         print("latitude is \(self.destLat) and longitude is \(self.destLong)")
         let camera = GMSCameraPosition.camera(withLatitude: self.destLat, longitude: self.destLong, zoom: 15.0)
-        var mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 0, width: 343, height: 300), camera: camera)
+        print("check or \(self.view.frame.origin.x) \(self.view.frame.origin.y)")
+        var mapView = GMSMapView.map(withFrame: CGRect(x: 0, y: 8, width: 340, height: 400), camera: camera)
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: self.destLat, longitude: self.destLong)
         marker.map = mapView
         //view = mapView
         //mapArea = mapView
-
-        mapView.center = self.view.center
+        //mapView.center = self.view.center
         self.mapArea.addSubview(mapView)
     }
     

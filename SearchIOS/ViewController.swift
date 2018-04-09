@@ -81,7 +81,7 @@ class ViewController: UIViewController {
         self.keyword = ""
         self.category = "Default"
         self.location = ""
-        self.locationString = ""
+        self.locationString = "Your location"
         self.distance = "10"
     }
     
