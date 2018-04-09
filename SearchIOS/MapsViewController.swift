@@ -45,6 +45,21 @@ class MapsViewController: UIViewController {
         self.mapArea.addSubview(mapView)
     }
     
+    func showMarker(latitud: Double, longitud: Double) {
+        let mapAr = mapArea.subviews[0] as! GMSMapView
+        let bounds = GMSCoordinateBounds.init()
+        let marker1 = GMSMarker()
+        marker1.position = CLLocationCoordinate2D(latitude: self.destLat, longitude: self.destLong)
+        bounds.includingCoordinate(marker1.position)
+        let marker2 = GMSMarker()
+        marker2.position = CLLocationCoordinate2D(latitude: latitud, longitude: longitud)
+        bounds.includingCoordinate(marker2.position)
+        marker2.map = mapAr
+//        marker2.map = mapArea.subviews[0] as! GMSMapView
+        let update = GMSCameraUpdate.fit(bounds, withPadding: 50.0)
+        mapAr.moveCamera(update)
+    }
+    
     @IBAction func autocomplete(_ sender: Any) {
         let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
@@ -56,41 +71,12 @@ class MapsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func getPolylineRoute(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D){
-        
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        
-        let url = URL(string: "http://maps.googleapis.com/maps/api/directions/json?origin=\(source.latitude),\(source.longitude)&destination=\(destination.latitude),\(destination.longitude)&sensor=false&mode=driving")!
-        
-        let task = session.dataTask(with: url, completionHandler: {
-            (data, response, error) in
-            if error != nil {
-                print(error!.localizedDescription)
-            }else{
-                do {
-                    if let json : [String:Any] = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: Any]{
-                        
-                        let routes = json["routes"] as? [Any]
-                        let overview_polyline = routes?[0] as?[String:Any]
-                        let polyString = overview_polyline?["points"] as?String
-                        
-                        //Call this method to draw path on map
-                        self.showPath(polyStr: polyString!)
-                    }
-                    
-                }catch{
-                    print("error in JSONSerialization")
-                }
-            }
-        })
-        task.resume()
-    }
-    
     func showPath(polyStr :String){
-        let path = GMSPath(fromEncodedPath: polyStr)
+        let path = GMSPath.init(fromEncodedPath: polyStr)
         let polyline = GMSPolyline(path: path)
+        polyline.map = nil
         polyline.strokeWidth = 3.0
+        polyline.strokeColor = UIColor.blue
         polyline.map = mapArea.subviews[0] as! GMSMapView
     }
     
@@ -99,17 +85,19 @@ class MapsViewController: UIViewController {
         var from = self.fromAdd.replacingOccurrences(of: " ", with: "+")
         from = from.replacingOccurrences(of: ",", with: "")
         from = from.replacingOccurrences(of: "'", with: "")
-        var destCoord = String(self.destLat) + "," + String(self.destLong)
+        let destCoord = String(self.destLat) + "," + String(self.destLong)
         var tempU = "http://iosappserver-env.us-east-2.elasticbeanstalk.com/googlepath?origin=" + from + "&destination=" + destCoord + "&mode=" + self.modeOfTravel
+        print("tempur for google = \(tempU)")
         Alamofire.request(tempU).responseSwiftyJSON { response in
             let places = response.result.value
-            let routes = places!["routes"] as? [Any]
-            let overview_polyline = routes?[0] as?[String:Any]
-            let polyString = overview_polyline?["points"] as?String
-            
-            self.showPath(polyStr: polyString!)
+            let routes = places!["routes"]
+            let overview_polyline = routes[0]
+            let originLat = overview_polyline["legs"][0]["start_location"]["lat"].double!
+            let originLong = overview_polyline["legs"][0]["start_location"]["lng"].double!
+            self.showMarker(latitud: originLat, longitud: originLong)
+            let polyString = overview_polyline["overview_polyline"]["points"].string!
+            self.showPath(polyStr: polyString)
         }
-        
     }
 }
 

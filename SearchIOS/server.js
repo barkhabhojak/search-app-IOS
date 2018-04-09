@@ -8,7 +8,7 @@ var router = express.Router();
 const yelp = require('yelp-fusion');
 var debug = false;
 var keyword_global, category_global, distance_global, loc_global, radioBtnChecked_global;
-var local = false;
+var local = true;
 const placesKey = "AIzaSyAU5hyg6Ky-pOHejxe2u8trKteehGkSNrk";
 const geoKey = "AIzaSyBi3mS77HSSIOTdlIgpnsjzdUVJIindH8w";
 const yelpKey = "HPOJ_wtKt3pM6NziniTmqO4ulVh2OWMZnii_NxW4NbvEMzZIe-FWcg6vTL53NmUJHMQ4KnjK4JQG0omkn0IymrRQKiQhoI69HkOEdwCx0L7v8QLW0UjTy-rSyEu0WnYx";
@@ -84,28 +84,22 @@ app.get('/ip', (req, res) => {
 			}
 	});
 })
+//http://iosappserver-env.us-east-2.elasticbeanstalk.com/googlepath?origin=2626+S+Figueroa+St+Los+Angeles+CA+90007+USA&destination=34.0221597,-118.2610431&mode=driving
 
 app.get('/googlepath', (req, res) => {
-	var origin = req.query.origin
-	var destination = req.query.destinatiom
+	var origin = req.query.origin.replaceAll(" ","+")
+	var destination = req.query.destination
 	var mode = req.query.mode
 	var url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + "&mode=" + mode + "&key=" + geoKey;
-	//googlepath?origin=Toronto&destination=Montreal&avoid=highways&mode=bicycling
 	request.get(url,function(error, response, body) {
 				if (error === null) {
 					var ob = JSON.parse(body);
 					res.send(ob);
 				}
 	});
-})
+});
 
 app.get('/result', (req, res) => {
-    //console.log(req.body);
-    //console.log(req);
-
-    // localhost:3000/result?keyw=pizza&category=Default&distance=&locOpt=curr-loc-34.0266%2C-118.2831
-    // localhost:3000/result?keyw=pizza&category=Default&distance=&locOpt=other-loc&loc=North+Alameda+Street%2C+Los+Angeles%2C+CA%2C+USA
-    // localhost:3000/result?next_page_token=CqQCHwEAADf3MDDr8WeJI3_4oj9m2t7f1FITaf_guEzSBmfzXl8X9G05XQwzY8QTxB_FOBqZVDhPh_4ytS9cHM0cZI34WcV4HRR7R6G7EtrQvcvJwJq-0xvq0RePWbU4j9RWdc-NG_-_Da2d_rRgypwIhpijN3emHe0q0a6zXenbKsjwZYrO_9GlJuXtRLFQ-Pda5FKLjouXyLFc2G36ShtCs4QcDkF6nJjaLjgDaJrk8vywfccQL4WXksg2RdYouINeqdp0rSKLCLbgxc9MBqtayeodeMJc6Hz8GMc2MtxycTmzz9Z7WA_3lqLxaXZN0My8Ktrkbv16vF3_Y_91TLGmCPucGvew_RnZY2H-GWIoAythCMCPOLFnDxkBnlGMjoYP22ky9RIQYrkQ317DDYAFDXtEL6bA6hoUHSw0L-qu7x8s3Fm3KCm4g1rJf_o&key=AIzaSyAU5hyg6Ky-pOHejxe2u8trKteehGkSNrk
     if (req.query.next_page_token !== undefined) {
     	if (debug)
     		console.log('next page token');
@@ -215,12 +209,8 @@ app.get('/result', (req, res) => {
 	
 
 var server = app.listen(process.env.port || 8081, function () {
-var port = server.address().port;
-
-console.log('App listening on port %s', port);
-console.log('Press Ctrl+C to quit.');
+	var port = server.address().port;
 });
-	
 
 
 
@@ -252,6 +242,8 @@ String.prototype.replaceAll = function(search, replacement) {
     var target = this;
     return target.replace(new RegExp(search, 'g'), replacement);
 };
+
+https://maps.googleapis.com/maps/api/directions/json?origin=2626+S+Figueroa+St+Los+Angeles+CA+90007+USA&destination=34.0221597,-118.2610431&mode=driving&key=AIzaSyBi3mS77HSSIOTdlIgpnsjzdUVJIindH8w
 
 module.exports = app;
 //module.exports = router;
