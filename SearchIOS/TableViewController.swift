@@ -214,7 +214,12 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
             let image: UIImage = UIImage(data: data)!
             cell.icon.image = image
         }
-        cell.favorites.image = UIImage(named: "favorite-empty")
+        if cell.fav {
+            cell.favorites.setImage(UIImage(named: "favorite-filled"), for: [])
+        }
+        else {
+            cell.favorites.setImage(UIImage(named: "favorite-empty"), for: [])
+        }
         cell.placeId = dict["place_id"] as! String
         return cell
     }

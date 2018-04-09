@@ -11,12 +11,25 @@ import UIKit
 class CustomTableViewCell: UITableViewCell {
     
     @IBOutlet weak var icon: UIImageView!
-    @IBOutlet weak var favorites: UIImageView!
+    //@IBOutlet weak var favorites: UIImageView!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var name: UILabel!
     var placeId = ""
     var fav = false
-
+    @IBOutlet weak var favorites: UIButton!
+    
+    @IBAction func onClickFav(_ sender: Any) {
+        print("click")
+        if fav {
+            fav = false
+            favorites.setImage(UIImage(named: "favorite-empty"), for: [])
+        }
+        else {
+            fav = true
+            favorites.setImage(UIImage(named: "favorite-filled"), for: [])
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
