@@ -35,6 +35,7 @@ class ReviewViewController: UIViewController {
     @IBAction func reviewSegmentChange(_ sender: Any) {
         if self.reviewSegment.selectedSegmentIndex == 0 {
             if self.googleReviewArray.count == 0 {
+                self.reviewTable.reloadData()
                 errorMessage(str: "no results")
             }
             else {
@@ -43,6 +44,7 @@ class ReviewViewController: UIViewController {
         }
         else {
             if self.yelpReviewArray.count == 0 {
+                self.reviewTable.reloadData()
                 errorMessage(str: "no results")
             }
             else {
