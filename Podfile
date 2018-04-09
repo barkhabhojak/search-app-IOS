@@ -14,5 +14,6 @@ pod 'EasyToast'
 pod 'Cosmos'
 pod 'GooglePlaces'
 pod 'McPicker'
+pod 'GoogleMaps'
 
 end

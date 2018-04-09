@@ -78,6 +78,7 @@ class TabViewController: UITabBarController {
                 svc2.web = self.web
                 svc2.destLat = resData["geometry"]["location"]["lat"].doubleValue
                 svc2.destLong = resData["geometry"]["location"]["lng"].doubleValue
+                svc2.formMap()
                 var svc3 = self.viewControllers![3] as! ReviewViewController
                 svc3.name = self.name
                 svc3.address = self.address

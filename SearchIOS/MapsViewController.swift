@@ -9,6 +9,7 @@
 import UIKit
 import SafariServices
 import GooglePlaces
+import GoogleMaps
 
 class MapsViewController: UIViewController {
     var name = ""
@@ -21,9 +22,22 @@ class MapsViewController: UIViewController {
     
     @IBOutlet weak var fromInputTextField: UITextField!
     @IBOutlet weak var navbar: UINavigationItem!
+    @IBOutlet weak var mapArea: GMSMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("map view controller")
+    }
+
+    func formMap() {
+        print("latitude is \(self.destLat) and longitude is \(self.destLong)")
+        let camera = GMSCameraPosition.camera(withLatitude: self.destLat, longitude: self.destLong, zoom: 15.0)
+        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: self.destLat, longitude: self.destLong)
+        marker.map = mapView
+        //view = mapView
+        mapArea = mapView
     }
     
     @IBAction func autocomplete(_ sender: Any) {

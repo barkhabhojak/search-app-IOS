@@ -5,7 +5,11 @@ PODS:
     - SwiftyJSON (~> 4.0)
   - Cosmos (15.0.0)
   - EasyToast (2.0.2)
+  - GoogleMaps (2.6.0):
+    - GoogleMaps/Maps (= 2.6.0)
   - GoogleMaps/Base (2.6.0)
+  - GoogleMaps/Maps (2.6.0):
+    - GoogleMaps/Base
   - GooglePlaces (2.6.0):
     - GoogleMaps/Base (= 2.6.0)
   - McPicker (1.0.0)
@@ -17,6 +21,7 @@ DEPENDENCIES:
   - AlamofireSwiftyJSON
   - Cosmos
   - EasyToast
+  - GoogleMaps
   - GooglePlaces
   - McPicker
   - SwiftSpinner
@@ -44,6 +49,6 @@ SPEC CHECKSUMS:
   SwiftSpinner: 4c058c7a1d6b444dd2e1d70988ead40783097133
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 039166badaeb419836018ee18360537129354d72
+PODFILE CHECKSUM: e861c2c91942d99ceaa1ba2b767c3357b6198631
 
 COCOAPODS: 1.5.0
