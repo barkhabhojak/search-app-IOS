@@ -14,6 +14,10 @@ class ReviewViewController: UIViewController {
     var address = ""
     var web = ""
     
+    @IBOutlet weak var reviewTable: UITableView!
+    @IBOutlet weak var orderSegment: UISegmentedControl!
+    @IBOutlet weak var sortSegment: UISegmentedControl!
+    @IBOutlet weak var reviewSegment: UISegmentedControl!
     @IBOutlet weak var navbar: UINavigationItem!
     override func viewDidLoad() {
         super.viewDidLoad()
