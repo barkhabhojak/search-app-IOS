@@ -45,19 +45,30 @@ class MapsViewController: UIViewController {
         self.mapArea.addSubview(mapView)
     }
     
-    func showMarker(latitud: Double, longitud: Double) {
+    func showRoute(latitud: Double, longitud: Double, polyStr :String) {
         let mapAr = mapArea.subviews[0] as! GMSMapView
+        let path = GMSPath.init(fromEncodedPath: polyStr)
+        let polyline = GMSPolyline(path: path)
+        polyline.map = nil
+        polyline.strokeWidth = 3.0
+        polyline.strokeColor = UIColor.blue
         let bounds = GMSCoordinateBounds.init()
         let marker1 = GMSMarker()
         marker1.position = CLLocationCoordinate2D(latitude: self.destLat, longitude: self.destLong)
-        bounds.includingCoordinate(marker1.position)
+        marker1.title = "B"
         let marker2 = GMSMarker()
         marker2.position = CLLocationCoordinate2D(latitude: latitud, longitude: longitud)
-        bounds.includingCoordinate(marker2.position)
+        marker2.title = "A"
+        bounds.contains(marker1.position)
+        bounds.contains(marker2.position)
+//        bounds.includingCoordinate(marker1.position)
+//        bounds.includingCoordinate(marker2.position)
+        bounds.includingPath(path!)
         marker2.map = mapAr
+        polyline.map = mapAr
 //        marker2.map = mapArea.subviews[0] as! GMSMapView
-        let update = GMSCameraUpdate.fit(bounds, withPadding: 50.0)
-        mapAr.moveCamera(update)
+        let update = GMSCameraUpdate.fit(bounds)
+        mapAr.animate(with: update)
     }
     
     @IBAction func autocomplete(_ sender: Any) {
@@ -71,14 +82,14 @@ class MapsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func showPath(polyStr :String){
-        let path = GMSPath.init(fromEncodedPath: polyStr)
-        let polyline = GMSPolyline(path: path)
-        polyline.map = nil
-        polyline.strokeWidth = 3.0
-        polyline.strokeColor = UIColor.blue
-        polyline.map = mapArea.subviews[0] as! GMSMapView
-    }
+//    func showPath(polyStr :String){
+//        let path = GMSPath.init(fromEncodedPath: polyStr)
+//        let polyline = GMSPolyline(path: path)
+//        polyline.map = nil
+//        polyline.strokeWidth = 3.0
+//        polyline.strokeColor = UIColor.blue
+//        polyline.map = mapArea.subviews[0] as! GMSMapView
+//    }
     
     func getGooglePath() {
         print("get path")
@@ -94,9 +105,8 @@ class MapsViewController: UIViewController {
             let overview_polyline = routes[0]
             let originLat = overview_polyline["legs"][0]["start_location"]["lat"].double!
             let originLong = overview_polyline["legs"][0]["start_location"]["lng"].double!
-            self.showMarker(latitud: originLat, longitud: originLong)
             let polyString = overview_polyline["overview_polyline"]["points"].string!
-            self.showPath(polyStr: polyString)
+            self.showRoute(latitud: originLat, longitud: originLong, polyStr: polyString)
         }
     }
 }
