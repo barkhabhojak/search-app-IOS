@@ -31,7 +31,10 @@ class InfoViewController: UIViewController {
     func addLabelsToPage() {
         print("info view controller")
         addLabel.text = (self.infoDetails["address"] as! String)
-        phoneLabel.text = (self.infoDetails["number"] as! String)
+        let ph = self.infoDetails["number"]  as! String
+        if ph != "null" {
+            phoneLabel.text = ph
+        }
         var price = Int((self.infoDetails["price"] as! String))
         var priceText = "Free"
         if price != nil && price! > 0 {
@@ -47,11 +50,10 @@ class InfoViewController: UIViewController {
         priceLabel.text = priceText
         websiteLabel.text = (self.infoDetails["website"] as! String)
         gPageLabel.text = (self.infoDetails["url"] as! String)
-        phoneLabel.font = UIFont(name: (phoneLabel.font?.fontName)!, size: 15)
-        websiteLabel.font = UIFont(name: (websiteLabel.font?.fontName)!, size: 14)
-        gPageLabel.font = UIFont(name: (gPageLabel.font?.fontName)!, size: 14)
-        priceLabel.font = UIFont(name: (priceLabel.font?.fontName)!, size: 15)
-
+//        phoneLabel.font = UIFont(name: (phoneLabel.font?.fontName)!, size: 15)
+//        websiteLabel.font = UIFont(name: (websiteLabel.font?.fontName)!, size: 14)
+//        gPageLabel.font = UIFont(name: (gPageLabel.font?.fontName)!, size: 14)
+//        priceLabel.font = UIFont(name: (priceLabel.font?.fontName)!, size: 15)
     }
  
 }
