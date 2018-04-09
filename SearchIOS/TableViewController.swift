@@ -11,7 +11,7 @@ import SwiftSpinner
 import Alamofire
 import AlamofireSwiftyJSON
 
-class TableViewController: UIViewController,UIGestureRecognizerDelegate {
+class TableViewController: UIViewController {
     
     var url = ""
     var currPageIndex = 0

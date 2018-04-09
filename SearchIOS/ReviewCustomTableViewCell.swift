@@ -16,6 +16,7 @@ class ReviewCustomTableViewCell: UITableViewCell {
     @IBOutlet weak var starsView: CosmosView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
+    var urlOfReview = ""
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

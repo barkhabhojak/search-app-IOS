@@ -83,6 +83,8 @@ class TabViewController: UITabBarController {
                 svc3.name = self.name
                 svc3.address = self.address
                 svc3.web = self.web
+                svc3.googleReviewArray = resData["reviews"].arrayObject as! [[String:Any]]
+                
                 //self.setValuesOfControl()
                 self.setNav()
             }
