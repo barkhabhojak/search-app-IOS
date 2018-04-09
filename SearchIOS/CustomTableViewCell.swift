@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EasyToast
 
 class CustomTableViewCell: UITableViewCell {
     
@@ -23,9 +24,13 @@ class CustomTableViewCell: UITableViewCell {
         if fav {
             fav = false
             favorites.setImage(UIImage(named: "favorite-empty"), for: [])
+            var string = name.text! + " was removed from favorites."
+            superview?.showToast(string, position: .bottom, popTime: 2, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
         }
         else {
             fav = true
+            var string = name.text! + " was added to favorites."
+            superview?.showToast(string, position: .bottom, popTime: 2, dismissOnTap: false, bgColor: UIColor.black, textColor: UIColor.white, font: UIFont.boldSystemFont(ofSize: 19))
             favorites.setImage(UIImage(named: "favorite-filled"), for: [])
         }
     }
