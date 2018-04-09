@@ -425,6 +425,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k5j-hh-vi4" customClass="GMSMapView">
+                                <rect key="frame" x="16" y="218" width="343" height="354"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="BNt-Q7-TCz"/>
@@ -457,6 +462,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="fromInputTextField" destination="Tnh-V2-7T6" id="iLK-1j-aZ0"/>
+                        <outlet property="mapArea" destination="k5j-hh-vi4" id="nO7-rI-mSb"/>
                         <outlet property="navbar" destination="iu3-Na-AU3" id="tl5-h1-59r"/>
                     </connections>
                 </viewController>

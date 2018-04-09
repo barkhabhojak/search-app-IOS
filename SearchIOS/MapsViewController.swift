@@ -23,7 +23,6 @@ class MapsViewController: UIViewController {
     @IBOutlet weak var fromInputTextField: UITextField!
     @IBOutlet weak var navbar: UINavigationItem!
     @IBOutlet weak var mapArea: GMSMapView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("map view controller")
