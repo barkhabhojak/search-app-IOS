@@ -420,6 +420,9 @@
                                     <segment title="Transit"/>
                                     <segment title="Walking"/>
                                 </segments>
+                                <connections>
+                                    <action selector="travelModeChange:" destination="Alm-Dh-dLe" eventType="valueChanged" id="xcu-S4-bw5"/>
+                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Travel Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtR-AI-d6b">
                                 <rect key="frame" x="16" y="135" width="94" height="21"/>
@@ -467,6 +470,7 @@
                         <outlet property="fromInputTextField" destination="Tnh-V2-7T6" id="iLK-1j-aZ0"/>
                         <outlet property="mapArea" destination="WgC-yu-3f9" id="uCH-ZQ-mnZ"/>
                         <outlet property="navbar" destination="iu3-Na-AU3" id="tl5-h1-59r"/>
+                        <outlet property="travelModeSegment" destination="ehV-af-XVb" id="TYt-3U-c0z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w6n-QD-2Qr" userLabel="First Responder" sceneMemberID="firstResponder"/>

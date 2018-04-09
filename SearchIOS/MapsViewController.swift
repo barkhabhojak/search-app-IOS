@@ -21,8 +21,10 @@ class MapsViewController: UIViewController {
     var web = ""
     var destLat : Double = 0.0
     var destLong : Double = 0.0
-    var modeOfTravel = "driving"
+    var polArr = [GMSPolyline]()
+    var markerArr = [GMSMarker]()
     
+    @IBOutlet weak var travelModeSegment: UISegmentedControl!
     @IBOutlet weak var mapArea: UIView!
     @IBOutlet weak var fromInputTextField: UITextField!
     @IBOutlet weak var navbar: UINavigationItem!
@@ -48,25 +50,30 @@ class MapsViewController: UIViewController {
     func showRoute(latitud: Double, longitud: Double, polyStr :String) {
         let mapAr = mapArea.subviews[0] as! GMSMapView
         let path = GMSPath.init(fromEncodedPath: polyStr)
+//        var avgLat = (latitud + self.destLat)/2
+//        var avgLong = (longitud + self.destLong)/2
+//        let camera = GMSCameraPosition.camera(withLatitude: avgLat, longitude: avgLong, zoom: 15.0)
+        if self.polArr.count > 0 {
+            self.polArr[0].map = nil
+            self.polArr.remove(at: 0)
+        }
+        if self.markerArr.count > 0 {
+            self.markerArr[0].map = nil
+            self.markerArr.remove(at: 0)
+        }
         let polyline = GMSPolyline(path: path)
         polyline.map = nil
         polyline.strokeWidth = 3.0
         polyline.strokeColor = UIColor.blue
-        let bounds = GMSCoordinateBounds.init()
         let marker1 = GMSMarker()
         marker1.position = CLLocationCoordinate2D(latitude: self.destLat, longitude: self.destLong)
-        marker1.title = "B"
         let marker2 = GMSMarker()
         marker2.position = CLLocationCoordinate2D(latitude: latitud, longitude: longitud)
-        marker2.title = "A"
-        bounds.contains(marker1.position)
-        bounds.contains(marker2.position)
-//        bounds.includingCoordinate(marker1.position)
-//        bounds.includingCoordinate(marker2.position)
-        bounds.includingPath(path!)
+        let bounds = GMSCoordinateBounds.init(coordinate: marker1.position, coordinate: marker2.position)
         marker2.map = mapAr
         polyline.map = mapAr
-//        marker2.map = mapArea.subviews[0] as! GMSMapView
+        self.polArr.append(polyline)
+        self.markerArr.append(marker2)
         let update = GMSCameraUpdate.fit(bounds)
         mapAr.animate(with: update)
     }
@@ -82,22 +89,13 @@ class MapsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-//    func showPath(polyStr :String){
-//        let path = GMSPath.init(fromEncodedPath: polyStr)
-//        let polyline = GMSPolyline(path: path)
-//        polyline.map = nil
-//        polyline.strokeWidth = 3.0
-//        polyline.strokeColor = UIColor.blue
-//        polyline.map = mapArea.subviews[0] as! GMSMapView
-//    }
-    
-    func getGooglePath() {
+    func getGooglePath(modeOfTravel: String) {
         print("get path")
         var from = self.fromAdd.replacingOccurrences(of: " ", with: "+")
         from = from.replacingOccurrences(of: ",", with: "")
         from = from.replacingOccurrences(of: "'", with: "")
         let destCoord = String(self.destLat) + "," + String(self.destLong)
-        var tempU = "http://iosappserver-env.us-east-2.elasticbeanstalk.com/googlepath?origin=" + from + "&destination=" + destCoord + "&mode=" + self.modeOfTravel
+        var tempU = "http://iosappserver-env.us-east-2.elasticbeanstalk.com/googlepath?origin=" + from + "&destination=" + destCoord + "&mode=" + modeOfTravel
         print("tempur for google = \(tempU)")
         Alamofire.request(tempU).responseSwiftyJSON { response in
             let places = response.result.value
@@ -107,6 +105,26 @@ class MapsViewController: UIViewController {
             let originLong = overview_polyline["legs"][0]["start_location"]["lng"].double!
             let polyString = overview_polyline["overview_polyline"]["points"].string!
             self.showRoute(latitud: originLat, longitud: originLong, polyStr: polyString)
+        }
+    }
+    
+    @IBAction func travelModeChange(_ sender: Any) {
+        if !(fromInputTextField.text?.isEmpty)! {
+            var modeOfTravel = "driving"
+            var a  = self.travelModeSegment.selectedSegmentIndex
+            if a == 0 {
+                modeOfTravel = "driving"
+            }
+            if a == 1 {
+                modeOfTravel = "bicycling"
+            }
+            if a == 2 {
+                modeOfTravel = "transit"
+            }
+            if a == 3 {
+                modeOfTravel = "walking"
+            }
+            getGooglePath(modeOfTravel: modeOfTravel)
         }
     }
 }
@@ -119,7 +137,21 @@ extension MapsViewController: GMSAutocompleteViewControllerDelegate {
         self.fromAdd = place.formattedAddress!
         fromInputTextField.text = place.formattedAddress!
         dismiss(animated: true, completion: nil)
-        getGooglePath()
+        var modeOfTravel = "driving"
+        var a  = self.travelModeSegment.selectedSegmentIndex
+        if a == 0 {
+            modeOfTravel = "driving"
+        }
+        if a == 1 {
+            modeOfTravel = "bicycling"
+        }
+        if a == 2 {
+            modeOfTravel = "transit"
+        }
+        if a == 3 {
+            modeOfTravel = "walking"
+        }
+        getGooglePath(modeOfTravel: modeOfTravel)
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
