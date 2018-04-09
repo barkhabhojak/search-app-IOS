@@ -14,6 +14,7 @@
 		30212A312079FC1B00C57D84 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30212A302079FC1B00C57D84 /* PhotoViewController.swift */; };
 		30212A332079FC2700C57D84 /* MapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30212A322079FC2700C57D84 /* MapsViewController.swift */; };
 		30212A352079FC3700C57D84 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30212A342079FC3700C57D84 /* ReviewViewController.swift */; };
+		30212A37207AE2F700C57D84 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30212A36207AE2F700C57D84 /* CollectionViewCell.swift */; };
 		30AE0BA42077092500F44AD0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AE0BA32077092500F44AD0 /* AppDelegate.swift */; };
 		30AE0BA62077092500F44AD0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30AE0BA52077092500F44AD0 /* ViewController.swift */; };
 		30AE0BA92077092500F44AD0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30AE0BA72077092500F44AD0 /* Main.storyboard */; };
@@ -30,6 +31,7 @@
 		30212A302079FC1B00C57D84 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		30212A322079FC2700C57D84 /* MapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsViewController.swift; sourceTree = "<group>"; };
 		30212A342079FC3700C57D84 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
+		30212A36207AE2F700C57D84 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		30AE0BA02077092500F44AD0 /* SearchIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30AE0BA32077092500F44AD0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		30AE0BA52077092500F44AD0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				30212A302079FC1B00C57D84 /* PhotoViewController.swift */,
 				30212A322079FC2700C57D84 /* MapsViewController.swift */,
 				30212A342079FC3700C57D84 /* ReviewViewController.swift */,
+				30212A36207AE2F700C57D84 /* CollectionViewCell.swift */,
 			);
 			path = SearchIOS;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30212A37207AE2F700C57D84 /* CollectionViewCell.swift in Sources */,
 				30212A2F2079E9CB00C57D84 /* TabViewController.swift in Sources */,
 				30AE0BA62077092500F44AD0 /* ViewController.swift in Sources */,
 				30212A27207945EC00C57D84 /* TableViewController.swift in Sources */,

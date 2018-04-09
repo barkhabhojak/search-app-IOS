@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SafariServices
 import Cosmos
 
 class InfoViewController: UIViewController {
@@ -31,7 +30,6 @@ class InfoViewController: UIViewController {
     
     func addLabelsToPage() {
         print("info view controller")
-        print(self.infoDetails)
         addLabel.text = (self.infoDetails["address"] as! String)
         phoneLabel.text = (self.infoDetails["number"] as! String)
         var price = Int((self.infoDetails["price"] as! String))
@@ -40,7 +38,6 @@ class InfoViewController: UIViewController {
             priceText = String(repeating: "$", count: price!)
         }
         var rat = Double((self.infoDetails["rating"] as! String))
-        print("rating \(rat)")
         if rat != nil {
             cosmosView.rating = Double((self.infoDetails["rating"] as! String))!
         }
@@ -50,6 +47,11 @@ class InfoViewController: UIViewController {
         priceLabel.text = priceText
         websiteLabel.text = (self.infoDetails["website"] as! String)
         gPageLabel.text = (self.infoDetails["url"] as! String)
+        phoneLabel.font = UIFont(name: (phoneLabel.font?.fontName)!, size: 15)
+        websiteLabel.font = UIFont(name: (websiteLabel.font?.fontName)!, size: 14)
+        gPageLabel.font = UIFont(name: (gPageLabel.font?.fontName)!, size: 14)
+        priceLabel.font = UIFont(name: (priceLabel.font?.fontName)!, size: 15)
+
     }
  
 }

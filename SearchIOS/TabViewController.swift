@@ -70,6 +70,8 @@ class TabViewController: UITabBarController {
                 svc1.name = self.name
                 svc1.address = self.address
                 svc1.web = self.web
+                svc1.placeId = self.placeId
+                svc1.loadPhotoForPlace(placeID: self.placeId)
                 var svc2 = self.viewControllers![2] as! MapsViewController
                 svc2.name = self.name
                 svc2.address = self.address
@@ -81,8 +83,8 @@ class TabViewController: UITabBarController {
                 //self.setValuesOfControl()
                 self.setNav()
             }
+            SwiftSpinner.hide()
         }
-        SwiftSpinner.hide()
     }
     
     func setNav() {
