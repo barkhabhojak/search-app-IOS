@@ -27,7 +27,7 @@ class TableViewController: UIViewController {
         super.viewDidLoad()
         self.title = "Search Results"
         self.tblJSON.tableFooterView = UIView(frame: CGRect.zero)
-        tblJSON.rowHeight = 70
+        tblJSON.rowHeight = 73
 //        tblJSON.separatorStyle = UITableViewCellSeparatorStyle.singleLine
 //        tblJSON.separatorColor = UIColor.gray
         print("table view url = " + url);

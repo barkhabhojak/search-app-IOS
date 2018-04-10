@@ -93,6 +93,15 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
             cell.name.text = (dict["author_name"] as? String)!
             cell.reviewText.text = (dict["text"] as? String)!
             cell.starsView.rating = (dict["rating"] as? Double)!
+//            let format = DateFormatter()
+//            format.locale = Locale(identifier: "en_US")
+//            format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//            let date = format.date(from: string)
+            var day = Date(timeIntervalSince1970: (dict["time"] as? Double)!)
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let dateString = dateFormatter.string(from:day as Date)
+            cell.dateTime.text = dateString
             let temp = (dict["profile_photo_url"] as? String)!
             if let data = try? Data(contentsOf: URL(string: temp)!)
             {
