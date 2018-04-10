@@ -23,6 +23,9 @@ class ViewController: UIViewController {
     var latitude = ""
     var longitude = ""
     
+    @IBOutlet weak var segSearchFav: UISegmentedControl!
+    @IBOutlet weak var searchView: UIView!
+    @IBOutlet weak var favView: UIView!
     @IBOutlet weak var navbar: UINavigationItem!
     @IBOutlet weak var keywordTextField: UITextField!
     @IBOutlet weak var distanceTextField: UITextField!
@@ -30,6 +33,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var mcTextField: McTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        favView.isHidden = true
         navbar.title = "Place Search"
         let locManager = CLLocationManager()
         locManager.requestWhenInUseAuthorization()
@@ -128,6 +132,21 @@ class ViewController: UIViewController {
         newStr = newStr.replacingOccurrences(of: ",", with: "")
         newStr = newStr.replacingOccurrences(of: " ", with: "+")
         return newStr
+    }
+    
+    @IBAction func changeSeg(_ sender: Any) {
+        if self.segSearchFav.selectedSegmentIndex == 0 {
+            //favView.alpha = 0
+            searchView.isHidden = false
+            favView.isHidden = true
+            //searchView.alpha = 1
+        }
+        else {
+            //searchView.alpha = 0
+            favView.isHidden = false
+            searchView.isHidden = true
+            //favView.alpha = 1
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
