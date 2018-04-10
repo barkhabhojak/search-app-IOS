@@ -70,6 +70,61 @@ class ReviewViewController: UIViewController {
         self.reviewTable.backgroundView = messageLabel;
         self.reviewTable.separatorStyle = .none;
     }
+    
+    @IBAction func sortSegChange(_ sender: Any) {
+        if reviewSegment.selectedSegmentIndex == 0 && self.googleReviewArraySort.count > 0{
+            if sortSegment.selectedSegmentIndex == 2 {
+                if orderSegment.selectedSegmentIndex == 0 {
+                    self.googleReviewArraySort = self.googleReviewArraySort.sorted(by: { ($0["time"] as! Double) < ($1["time"] as! Double)})
+                    self.reviewTable.reloadData()
+                }
+                else {
+                    self.googleReviewArraySort = self.googleReviewArraySort.sorted(by: { ($0["time"] as! Double) > ($1["time"] as! Double)})
+                    self.reviewTable.reloadData()
+                }
+            }
+            else if sortSegment.selectedSegmentIndex == 1 {
+                if orderSegment.selectedSegmentIndex == 0 {
+                    self.googleReviewArraySort = self.googleReviewArraySort.sorted(by: { ($0["rating"] as! Double) < ($1["rating"] as! Double)})
+                    self.reviewTable.reloadData()
+                }
+                else {
+                    self.googleReviewArraySort = self.googleReviewArraySort.sorted(by: { ($0["rating"] as! Double) > ($1["rating"] as! Double)})
+                    self.reviewTable.reloadData()
+                }
+            }
+            else {
+                self.reviewTable.reloadData()
+            }
+        }
+        else if reviewSegment.selectedSegmentIndex == 1 && self.yelpReviewArraySort.count > 0{
+            if sortSegment.selectedSegmentIndex == 2 {
+//                if orderSegment.selectedSegmentIndex == 0 {
+//                    self.yelpReviewArraySort = self.yelpReviewArraySort.sorted(by: { ($0["time"] as! Double) < ($1["time"] as! Double)})
+//                    self.reviewTable.reloadData()
+//                }
+//                else {
+//                    self.yelpReviewArraySort = self.yelpReviewArraySort.sorted(by: { ($0["time"] as! Double) > ($1["time"] as! Double)})
+//                    self.reviewTable.reloadData()
+//                }
+            }
+            else if sortSegment.selectedSegmentIndex == 1 {
+                if orderSegment.selectedSegmentIndex == 0 {
+                    self.yelpReviewArraySort = self.yelpReviewArraySort.sorted(by: { ($0["rating"] as! Double) < ($1["rating"] as! Double)})
+                    self.reviewTable.reloadData()
+                }
+                else {
+                    self.yelpReviewArraySort = self.yelpReviewArraySort.sorted(by: { ($0["rating"] as! Double) > ($1["rating"] as! Double)})
+                    self.reviewTable.reloadData()
+                }
+            }
+            else {
+                self.reviewTable.reloadData()
+            }
+        }
+    }
+    
+    
 }
 
 extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
@@ -90,7 +145,13 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell") as! ReviewCustomTableViewCell
         if reviewSegment.selectedSegmentIndex == 0 {
-            var dict = googleReviewArray[(indexPath as NSIndexPath).row]
+            var dict = [String:Any]()
+            if self.sortSegment.selectedSegmentIndex == 0 {
+                dict = googleReviewArray[(indexPath as NSIndexPath).row]
+            }
+            else {
+                dict = googleReviewArraySort[(indexPath as NSIndexPath).row]
+            }
             cell.urlOfReview = (dict["author_url"] as? String)!
             cell.name.text = (dict["author_name"] as? String)!
             cell.reviewText.text = (dict["text"] as? String)!
@@ -108,7 +169,13 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         else {
-            var dict = yelpReviewArray[(indexPath as NSIndexPath).row]
+            var dict = [String:AnyObject]()
+            if self.sortSegment.selectedSegmentIndex == 0 {
+                dict = yelpReviewArray[(indexPath as NSIndexPath).row]
+            }
+            else {
+                dict = yelpReviewArraySort[(indexPath as NSIndexPath).row]
+            }
             cell.urlOfReview = (dict["url"] as? String)!
             cell.name.text = (dict["user"]!["name"] as? String)!
             cell.reviewText.text = (dict["text"] as? String)!

@@ -524,6 +524,9 @@
                                     <segment title="Date"/>
                                 </segments>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="sortSegChange:" destination="x5z-E3-56O" eventType="valueChanged" id="EEW-vG-h50"/>
+                                </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="XrR-aV-n14">
                                 <rect key="frame" x="81" y="167" width="186" height="29"/>
@@ -533,6 +536,9 @@
                                     <segment title="Descending"/>
                                 </segments>
                                 <color key="tintColor" red="0.59902442889999996" green="0.59902442889999996" blue="0.59902442889999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="sortSegChange:" destination="x5z-E3-56O" eventType="valueChanged" id="PEg-It-5Np"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vCK-kn-c78">
                                 <rect key="frame" x="0.0" y="213" width="375" height="405"/>
