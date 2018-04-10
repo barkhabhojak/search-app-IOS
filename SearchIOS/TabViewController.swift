@@ -22,11 +22,13 @@ class TabViewController: UITabBarController {
     var infoDetails = [String:Any]()
     var favSelect = false
     let apiKey = "AIzaSyAU5hyg6Ky-pOHejxe2u8trKteehGkSNrk"
+    var rowCell = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         //print(self.viewControllers?.count)
         print("tab url = \(url)" )
+        //print(self.navigationController!.viewControllers.first)
         getDetails()
     }
 
@@ -138,7 +140,7 @@ class TabViewController: UITabBarController {
         else {
             fav = UIBarButtonItem(image: UIImage(named: "favorite-filled"),
                                       style: UIBarButtonItemStyle.plain ,
-                                      target: self, action: Selector(("removeFromFav:")))
+                                      target: self, action: #selector(favToggle))
         }
         self.navigationItem.rightBarButtonItems = [fav,share]
     }
@@ -155,18 +157,29 @@ class TabViewController: UITabBarController {
     @objc func favToggle() {
         if self.favSelect {
             self.favSelect = false
-            var btnFav = UIBarButtonItem(image: UIImage(named: "favorite-empty"),
+            let btnFav = UIBarButtonItem(image: UIImage(named: "favorite-empty"),
                                   style: UIBarButtonItemStyle.plain ,
                                   target: self, action: #selector(favToggle))
             self.navigationItem.rightBarButtonItems![0] = btnFav
-
+            if let cntrl = self.navigationController?.viewControllers[(viewControllers?.count)!-3] as? TableViewController {
+                let cell = cntrl.tblJSON.cellForRow(at: IndexPath.init(row: self.rowCell, section: 0)) as! CustomTableViewCell
+                cell.fav = false
+                cell.favorites.setImage(UIImage(named: "favorite-empty"), for: [])
+                cntrl.addRemoveFavWithPID(rowInd: self.rowCell)
+            }
         }
         else {
             self.favSelect = true
-            var btnFav = UIBarButtonItem(image: UIImage(named: "favorite-filled"),
+            let btnFav = UIBarButtonItem(image: UIImage(named: "favorite-filled"),
                                          style: UIBarButtonItemStyle.plain ,
                                          target: self, action: #selector(favToggle))
             self.navigationItem.rightBarButtonItems![0] = btnFav
+            if let cntrl = self.navigationController?.viewControllers[(viewControllers?.count)!-3] as? TableViewController {
+                let cell = cntrl.tblJSON.cellForRow(at: IndexPath.init(row: self.rowCell, section: 0)) as! CustomTableViewCell
+                cell.fav = false
+                cell.favorites.setImage(UIImage(named: "favorite-filled"), for: [])
+                cntrl.addRemoveFavWithPID(rowInd: self.rowCell)
+            }
         }
     }
 }

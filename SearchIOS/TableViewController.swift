@@ -22,6 +22,9 @@ class TableViewController: UIViewController {
     var name = ""
     @IBOutlet weak var nextBtn: UIButton!
     @IBOutlet weak var prevBtn: UIButton!
+    var favArray = [[String:String]]()
+    var isFav = false
+    var selRow = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +34,7 @@ class TableViewController: UIViewController {
 //        tblJSON.separatorStyle = UITableViewCellSeparatorStyle.singleLine
 //        tblJSON.separatorColor = UIColor.gray
         print("table view url = " + url);
+        //print(self.navigationController!.viewControllers.first)
         getResults();
     }
 
@@ -191,6 +195,8 @@ class TableViewController: UIViewController {
             vc?.placeId = self.pid
             vc?.url = self.url
             vc?.name = self.name
+            vc?.favSelect = self.isFav
+            vc?.rowCell = self.selRow
         }
     }
     
@@ -208,19 +214,22 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         var dict = arrRes[(indexPath as NSIndexPath).row]
         cell.name.text = dict["name"] as? String
         cell.address.text = dict["vicinity"] as? String
+        cell.placeId = dict["place_id"] as! String
+        let f = foundInArr(placeID: cell.placeId)
         let url = URL(string:dict["icon"] as! String)
         if let data = try? Data(contentsOf: url!)
         {
             let image: UIImage = UIImage(data: data)!
             cell.icon.image = image
         }
-        if cell.fav {
+        if cell.fav || f >= 0{
             cell.favorites.setImage(UIImage(named: "favorite-filled"), for: [])
         }
-        else {
+        else if !cell.fav || f == -10 {
             cell.favorites.setImage(UIImage(named: "favorite-empty"), for: [])
         }
-        cell.placeId = dict["place_id"] as! String
+        cell.favorites.tag = indexPath.row
+        cell.favorites.addTarget(self, action: #selector(addRemoveFav(sender:)), for: .touchUpInside)
         return cell
     }
     
@@ -230,11 +239,55 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
-        //print(cell.name.text as! String)
-        print(cell.placeId)
+        selRow = indexPath.row
         pid = cell.placeId
+        isFav = cell.fav
         name = cell.name.text!
         performSegue(withIdentifier: "details", sender: nil)
     }
     
+    @objc func addRemoveFav(sender: UIButton){
+        let buttonTag = sender.tag
+        let ind = IndexPath.init(row: buttonTag, section: 0)
+        let cell = self.tblJSON.cellForRow(at: ind) as! CustomTableViewCell
+        print("add remove fav \(buttonTag)")
+        let f = foundInArr(placeID: cell.placeId)
+        if f == -10 {
+            var temp = [String:String]()
+            temp["name"] = cell.name.text
+            temp["address"] = cell.address.text
+            temp["placeId"] = cell.placeId
+            favArray.append(temp)
+        }
+        else {
+            favArray.remove(at: f)
+        }
+        print(favArray)
+    }
+    
+    func addRemoveFavWithPID(rowInd: Int){
+        let ind = IndexPath.init(row: rowInd, section: 0)
+        let cell = self.tblJSON.cellForRow(at: ind) as! CustomTableViewCell
+        let f = foundInArr(placeID: cell.placeId)
+        if f == -10 {
+            var temp = [String:String]()
+            temp["name"] = cell.name.text
+            temp["address"] = cell.address.text
+            temp["placeId"] = cell.placeId
+            favArray.append(temp)
+        }
+        else {
+            favArray.remove(at: f)
+        }
+        print(favArray)
+    }
+    
+    func foundInArr(placeID: String) -> Int {
+        for (index,favItem) in favArray.enumerated() {
+            if favItem["placeId"] == placeID {
+                return index
+            }
+        }
+        return -10
+    }
 }

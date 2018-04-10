@@ -22,6 +22,9 @@ class ViewController: UIViewController {
     var url = ""
     var latitude = ""
     var longitude = ""
+    var favArray = [[String:String]]()
+    
+    //for favorites you need name,address,icon,placeID
     
     @IBOutlet weak var segSearchFav: UISegmentedControl!
     @IBOutlet weak var searchView: UIView!

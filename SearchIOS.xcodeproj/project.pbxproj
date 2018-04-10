@@ -150,7 +150,7 @@
 				TargetAttributes = {
 					30AE0B9F2077092500F44AD0 = {
 						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -409,11 +409,14 @@
 			baseConfigurationReference = 319AEEFF13304C9715059143 /* Pods-SearchIOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 2L99C2F9F3;
 				INFOPLIST_FILE = SearchIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.csci.SearchIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b891267d-417d-4a0b-b54c-f04c59ddbed5";
+				PROVISIONING_PROFILE_SPECIFIER = "Search CSCI";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -424,11 +427,14 @@
 			baseConfigurationReference = 7DBE0DAF84C3D626AF235DD9 /* Pods-SearchIOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 2L99C2F9F3;
 				INFOPLIST_FILE = SearchIOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.csci.SearchIOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b891267d-417d-4a0b-b54c-f04c59ddbed5";
+				PROVISIONING_PROFILE_SPECIFIER = "Search CSCI";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
