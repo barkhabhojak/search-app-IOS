@@ -98,15 +98,17 @@ class ReviewViewController: UIViewController {
             }
         }
         else if reviewSegment.selectedSegmentIndex == 1 && self.yelpReviewArraySort.count > 0{
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
             if sortSegment.selectedSegmentIndex == 2 {
-//                if orderSegment.selectedSegmentIndex == 0 {
-//                    self.yelpReviewArraySort = self.yelpReviewArraySort.sorted(by: { ($0["time"] as! Double) < ($1["time"] as! Double)})
-//                    self.reviewTable.reloadData()
-//                }
-//                else {
-//                    self.yelpReviewArraySort = self.yelpReviewArraySort.sorted(by: { ($0["time"] as! Double) > ($1["time"] as! Double)})
-//                    self.reviewTable.reloadData()
-//                }
+                if orderSegment.selectedSegmentIndex == 0 {
+                    self.yelpReviewArraySort = self.yelpReviewArraySort.sorted(by: { (dateFormatter.date(from: $0["time_created"] as! String))?.compare(dateFormatter.date(from: $1["time_created"] as! String)!) == .orderedAscending })
+                    self.reviewTable.reloadData()
+                }
+                else {
+                    self.yelpReviewArraySort = self.yelpReviewArraySort.sorted(by: { (dateFormatter.date(from: $0["time_created"] as! String))?.compare(dateFormatter.date(from: $1["time_created"] as! String)!) == .orderedDescending })
+                    self.reviewTable.reloadData()
+                }
             }
             else if sortSegment.selectedSegmentIndex == 1 {
                 if orderSegment.selectedSegmentIndex == 0 {
