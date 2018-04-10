@@ -90,7 +90,7 @@ class TabViewController: UITabBarController {
                 svc3.address = self.address
                 svc3.web = self.web
                 svc3.googleReviewArray = resData["reviews"].arrayObject as! [[String:Any]]
-                
+                svc3.googleReviewArraySort = resData["reviews"].arrayObject as! [[String:Any]]
                 //self.setValuesOfControl()
                 self.setNav()
             }
@@ -114,6 +114,7 @@ class TabViewController: UITabBarController {
                 if (yelp!["status"] != "No match found") {
                     let s = self.viewControllers![3] as! ReviewViewController
                     s.yelpReviewArray = yelp!["reviews"].arrayObject as! [[String:AnyObject]]
+                    s.yelpReviewArraySort = yelp!["reviews"].arrayObject as! [[String:AnyObject]]
                 }
             }
             SwiftSpinner.hide()

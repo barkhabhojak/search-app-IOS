@@ -14,7 +14,9 @@ class ReviewViewController: UIViewController {
     var address = ""
     var web = ""
     var googleReviewArray = [[String:Any]]()
+    var googleReviewArraySort = [[String:Any]]()
     var yelpReviewArray = [[String:AnyObject]]()
+    var yelpReviewArraySort = [[String:AnyObject]]()
     @IBOutlet weak var reviewTable: UITableView!
     @IBOutlet weak var orderSegment: UISegmentedControl!
     @IBOutlet weak var sortSegment: UISegmentedControl!
