@@ -112,7 +112,8 @@ class TabViewController: UITabBarController {
             Alamofire.request(yelpURL).responseSwiftyJSON { response in
                 let yelp = response.result.value
                 if (yelp!["status"] != "No match found") {
-                    print(yelp)
+                    let s = self.viewControllers![3] as! ReviewViewController
+                    s.yelpReviewArray = yelp!["reviews"].arrayObject as! [[String:AnyObject]]
                 }
             }
             SwiftSpinner.hide()

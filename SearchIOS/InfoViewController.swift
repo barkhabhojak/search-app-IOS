@@ -50,10 +50,6 @@ class InfoViewController: UIViewController {
         priceLabel.text = priceText
         websiteLabel.text = (self.infoDetails["website"] as! String)
         gPageLabel.text = (self.infoDetails["url"] as! String)
-//        phoneLabel.font = UIFont(name: (phoneLabel.font?.fontName)!, size: 15)
-//        websiteLabel.font = UIFont(name: (websiteLabel.font?.fontName)!, size: 14)
-//        gPageLabel.font = UIFont(name: (gPageLabel.font?.fontName)!, size: 14)
-//        priceLabel.font = UIFont(name: (priceLabel.font?.fontName)!, size: 15)
     }
  
 }

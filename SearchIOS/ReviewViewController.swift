@@ -14,7 +14,7 @@ class ReviewViewController: UIViewController {
     var address = ""
     var web = ""
     var googleReviewArray = [[String:Any]]()
-    var yelpReviewArray = [[String:Any]]()
+    var yelpReviewArray = [[String:AnyObject]]()
     @IBOutlet weak var reviewTable: UITableView!
     @IBOutlet weak var orderSegment: UISegmentedControl!
     @IBOutlet weak var sortSegment: UISegmentedControl!
@@ -93,10 +93,6 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
             cell.name.text = (dict["author_name"] as? String)!
             cell.reviewText.text = (dict["text"] as? String)!
             cell.starsView.rating = (dict["rating"] as? Double)!
-//            let format = DateFormatter()
-//            format.locale = Locale(identifier: "en_US")
-//            format.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//            let date = format.date(from: string)
             var day = Date(timeIntervalSince1970: (dict["time"] as? Double)!)
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -107,6 +103,25 @@ extension ReviewViewController: UITableViewDelegate, UITableViewDataSource {
             {
                 let image: UIImage = UIImage(data: data)!
                 cell.profileImage.image = image
+            }
+        }
+        else {
+            var dict = yelpReviewArray[(indexPath as NSIndexPath).row]
+            cell.urlOfReview = (dict["url"] as? String)!
+            cell.name.text = (dict["user"]!["name"] as? String)!
+            cell.reviewText.text = (dict["text"] as? String)!
+            cell.starsView.rating = (dict["rating"] as? Double)!
+            cell.dateTime.text = (dict["time_created"] as? String)!
+            let temp = dict["user"]!["image_url"] as? String
+            if temp != nil {
+                if let data = try? Data(contentsOf: URL(string: temp!)!)
+                {
+                    let image: UIImage = UIImage(data: data)!
+                    cell.profileImage.image = image
+                }
+            }
+            else {
+                cell.profileImage.image = nil
             }
         }
         return cell
