@@ -20,7 +20,6 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var favorites: UIButton!
     
     @IBAction func onClickFav(_ sender: Any) {
-        print("click")
         if fav {
             fav = false
             favorites.setImage(UIImage(named: "favorite-empty"), for: [])

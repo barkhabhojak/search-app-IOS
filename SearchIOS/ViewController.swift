@@ -162,6 +162,12 @@ class ViewController: UIViewController {
             vc?.url = self.url
         }
     }
+    
+    func updateFav(favAr: [[String:String]]) {
+        self.favArray = favAr
+        print("update")
+        print(self.favArray)
+    }
 }
 
 extension String {

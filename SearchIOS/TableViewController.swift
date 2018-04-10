@@ -250,7 +250,6 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         let buttonTag = sender.tag
         let ind = IndexPath.init(row: buttonTag, section: 0)
         let cell = self.tblJSON.cellForRow(at: ind) as! CustomTableViewCell
-        print("add remove fav \(buttonTag)")
         let f = foundInArr(placeID: cell.placeId)
         if f == -10 {
             var temp = [String:String]()
@@ -262,7 +261,8 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         else {
             favArray.remove(at: f)
         }
-        print(favArray)
+        let cntrl = self.navigationController!.viewControllers.first as! ViewController
+        cntrl.updateFav(favAr: favArray)
     }
     
     func addRemoveFavWithPID(rowInd: Int){
@@ -279,7 +279,8 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         else {
             favArray.remove(at: f)
         }
-        print(favArray)
+        let cntrl = self.navigationController!.viewControllers.first as! ViewController
+        cntrl.updateFav(favAr: favArray)
     }
     
     func foundInArr(placeID: String) -> Int {
