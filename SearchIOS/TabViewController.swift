@@ -42,11 +42,15 @@ class TabViewController: UITabBarController {
         SwiftSpinner.show("Loading..")
         var tempU = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + self.placeId + "&key=" + self.apiKey
         print("temp url = \(tempU)")
+        var lat = ""
+        var long = ""
+        var strAd = ""
         Alamofire.request(tempU).responseSwiftyJSON { response in
             let places = response.result.value
             //print(places)
             if places!["status"] == "OK" {
                 var resData = places!["result"]
+                strAd = resData["adr_address"].string!
                 self.name = resData["name"].string!
                 self.address =  resData["formatted_address"].string!
                 if (resData["website"].string) != nil {
@@ -63,23 +67,25 @@ class TabViewController: UITabBarController {
                 self.infoDetails["number"] = String(describing: resData["international_phone_number"])
                 self.infoDetails["price"] = String(describing: resData["price_level"])
                 self.infoDetails["url"] = resData["url"].string!
-                var svc = self.viewControllers![0] as! InfoViewController
+                let svc = self.viewControllers![0] as! InfoViewController
                 svc.infoDetails = self.infoDetails
                 svc.addLabelsToPage()
-                var svc1 = self.viewControllers![1] as! PhotoViewController
+                let svc1 = self.viewControllers![1] as! PhotoViewController
                 svc1.name = self.name
                 svc1.address = self.address
                 svc1.web = self.web
                 svc1.placeId = self.placeId
                 svc1.loadPhotoForPlace(placeID: self.placeId)
-                var svc2 = self.viewControllers![2] as! MapsViewController
+                let svc2 = self.viewControllers![2] as! MapsViewController
                 svc2.name = self.name
                 svc2.address = self.address
                 svc2.web = self.web
                 svc2.destLat = resData["geometry"]["location"]["lat"].doubleValue
                 svc2.destLong = resData["geometry"]["location"]["lng"].doubleValue
+                lat = String(format:"%f", resData["geometry"]["location"]["lat"].doubleValue)
+                long = String(format:"%f", resData["geometry"]["location"]["lng"].doubleValue)
                 svc2.formMap()
-                var svc3 = self.viewControllers![3] as! ReviewViewController
+                let svc3 = self.viewControllers![3] as! ReviewViewController
                 svc3.name = self.name
                 svc3.address = self.address
                 svc3.web = self.web
@@ -87,6 +93,27 @@ class TabViewController: UITabBarController {
                 
                 //self.setValuesOfControl()
                 self.setNav()
+            }
+            
+            //name = self.name,address = self.address,city,state,postal code,latitude = lat,longitude = long
+            let postalCode = strAd.components(separatedBy: "postal-code\">")[1].components(separatedBy: "<")[0]
+            let city = strAd.components(separatedBy: "locality\">")[1].components(separatedBy: "<")[0].replacingOccurrences(of: " ", with: "+")
+            let state = strAd.components(separatedBy: "region\">")[1].components(separatedBy: "<")[0]
+            var n = self.name.replacingOccurrences(of: " ", with: "+")
+            var a = self.name.replacingOccurrences(of: " ", with: "+")
+            a = a.replacingOccurrences(of: "'", with: "")
+            a = a.replacingOccurrences(of: "#", with: "")
+            n = n.replacingOccurrences(of: "'", with: "")
+            var yelpURL = "http://iosappserver-env.us-east-2.elasticbeanstalk.com/yelp?name=" + n + "&address="
+            yelpURL += a + "&city=" + city + "&state="
+            yelpURL += state + "&postal_code=" + postalCode
+            yelpURL += "&latitude=" + lat + "&longitude=" + long
+            print("yelp url \(yelpURL)")
+            Alamofire.request(yelpURL).responseSwiftyJSON { response in
+                let yelp = response.result.value
+                if (yelp!["status"] != "No match found") {
+                    print(yelp)
+                }
             }
             SwiftSpinner.hide()
         }
