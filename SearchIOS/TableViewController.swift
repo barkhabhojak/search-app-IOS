@@ -25,6 +25,7 @@ class TableViewController: UIViewController {
     var favArray = [[String:String]]()
     var isFav = false
     var selRow = 0
+    var iconString = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -197,6 +198,7 @@ class TableViewController: UIViewController {
             vc?.name = self.name
             vc?.favSelect = self.isFav
             vc?.rowCell = self.selRow
+            vc?.iconString = self.iconString
         }
     }
     
@@ -250,6 +252,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         pid = cell.placeId
         isFav = cell.fav
         name = cell.name.text!
+        iconString = cell.iconString
         performSegue(withIdentifier: "details", sender: nil)
     }
     

@@ -24,6 +24,9 @@ class ViewController: UIViewController {
     var longitude = ""
     var favArray = [[String:String]]()
     var selectedPID = ""
+    var nameSelect = ""
+    var addSelect = ""
+    var iconString = ""
     
     //for favorites you need name,address,icon,placeID
     
@@ -188,6 +191,10 @@ class ViewController: UIViewController {
         {
             let vc = segue.destination as? TabViewController
             vc?.placeId = self.selectedPID
+            vc?.favSelect = true
+            vc?.iconString = self.iconString
+            vc?.name = self.nameSelect
+            vc?.address = self.addSelect
         }
     }
     
@@ -321,6 +328,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         print("fav selected")
         let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
         self.selectedPID = cell.placeId
+        self.nameSelect = cell.favName.text!
+        self.addSelect = cell.favAdd.text!
+        self.iconString = cell.iconString
         performSegue(withIdentifier: "favDetails", sender: nil)
     }
 

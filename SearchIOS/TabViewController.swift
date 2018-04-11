@@ -23,6 +23,7 @@ class TabViewController: UITabBarController {
     var favSelect = false
     let apiKey = "AIzaSyAU5hyg6Ky-pOHejxe2u8trKteehGkSNrk"
     var rowCell = 0
+    var iconString = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -162,10 +163,19 @@ class TabViewController: UITabBarController {
                                   target: self, action: #selector(favToggle))
             self.navigationItem.rightBarButtonItems![0] = btnFav
             if let cntrl = self.navigationController?.viewControllers[(viewControllers?.count)!-3] as? TableViewController {
+                print("tablecntrl")
                 let cell = cntrl.tblJSON.cellForRow(at: IndexPath.init(row: self.rowCell, section: 0)) as! CustomTableViewCell
                 cell.fav = false
                 cell.favorites.setImage(UIImage(named: "favorite-empty"), for: [])
                 cntrl.addRemoveFavWithPID(rowInd: self.rowCell)
+            }
+            else if let cntrl = self.navigationController!.viewControllers.first as? ViewController {
+                var temp = [String:String]()
+                temp["name"] = self.name
+                temp["address"] = self.address
+                temp["placeId"] = self.placeId
+                temp["iconString"] = self.iconString
+                cntrl.updateFav(favAr: temp, add: false)
             }
         }
         else {
@@ -175,10 +185,19 @@ class TabViewController: UITabBarController {
                                          target: self, action: #selector(favToggle))
             self.navigationItem.rightBarButtonItems![0] = btnFav
             if let cntrl = self.navigationController?.viewControllers[(viewControllers?.count)!-3] as? TableViewController {
+                print("tablecntrl")
                 let cell = cntrl.tblJSON.cellForRow(at: IndexPath.init(row: self.rowCell, section: 0)) as! CustomTableViewCell
                 cell.fav = false
                 cell.favorites.setImage(UIImage(named: "favorite-filled"), for: [])
                 cntrl.addRemoveFavWithPID(rowInd: self.rowCell)
+            }
+            else if let cntrl = self.navigationController!.viewControllers.first as? ViewController {
+                var temp = [String:String]()
+                temp["name"] = self.name
+                temp["address"] = self.address
+                temp["placeId"] = self.placeId
+                temp["iconString"] = self.iconString
+                cntrl.updateFav(favAr: temp, add: true)
             }
         }
     }
