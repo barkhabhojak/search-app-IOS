@@ -216,6 +216,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
         cell.address.text = dict["vicinity"] as? String
         cell.placeId = dict["place_id"] as! String
         let f = foundInArr(placeID: cell.placeId)
+        cell.iconString = dict["icon"] as! String
         let url = URL(string:dict["icon"] as! String)
         if let data = try? Data(contentsOf: url!)
         {
@@ -256,6 +257,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
             temp["name"] = cell.name.text
             temp["address"] = cell.address.text
             temp["placeId"] = cell.placeId
+            temp["iconString"] = cell.iconString
             favArray.append(temp)
         }
         else {
@@ -274,6 +276,7 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
             temp["name"] = cell.name.text
             temp["address"] = cell.address.text
             temp["placeId"] = cell.placeId
+            temp["iconString"] = cell.iconString
             favArray.append(temp)
         }
         else {

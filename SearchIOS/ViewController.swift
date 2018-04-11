@@ -26,6 +26,7 @@ class ViewController: UIViewController {
     
     //for favorites you need name,address,icon,placeID
     
+    @IBOutlet weak var favTableView: UITableView!
     @IBOutlet weak var segSearchFav: UISegmentedControl!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var favView: UIView!
@@ -36,7 +37,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var mcTextField: McTextField!
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkFav()
         favView.isHidden = true
+        self.favTableView.rowHeight = 73
         navbar.title = "Place Search"
         let locManager = CLLocationManager()
         locManager.requestWhenInUseAuthorization()
@@ -69,7 +72,26 @@ class ViewController: UIViewController {
         print ("Location string: " + locationString)
     }
     
-
+    func errorMessage(str: String) {
+        let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+        let messageLabel = UILabel(frame: rect)
+        if str == "no results" {
+            messageLabel.text = "No favorites."
+        }
+        else {
+            messageLabel.text = "Error in retrieving details."
+        }
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = .center;
+        messageLabel.sizeToFit()
+        self.favTableView.backgroundView = messageLabel;
+        self.favTableView.separatorStyle = .none;
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.favTableView.reloadData()
+    }
+    
     @IBAction func distanceEdit(_ sender: Any) {
         self.distance = distanceTextField.text!
     }
@@ -163,10 +185,31 @@ class ViewController: UIViewController {
         }
     }
     
+    func checkFav() {
+        print("check fav")
+        if self.favArray.count == 0 {
+            errorMessage(str: "no results")
+        }
+        else {
+            self.favTableView.backgroundView = UIView();
+            self.favTableView.tableFooterView = UIView(frame: CGRect.zero)
+            self.favTableView.separatorStyle = .singleLine;
+            self.favTableView.reloadData()
+        }
+    }
+    
     func updateFav(favAr: [[String:String]]) {
+        print("update fav")
         self.favArray = favAr
-        print("update")
-        print(self.favArray)
+        if self.favArray.count == 0 {
+            errorMessage(str: "no results")
+        }
+        else {
+            self.favTableView.backgroundView = UIView();
+            self.favTableView.tableFooterView = UIView(frame: CGRect.zero)
+            self.favTableView.separatorStyle = .singleLine;
+            self.favTableView.reloadData()
+        }
     }
 }
 
@@ -210,4 +253,40 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
         UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
+}
+
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return favArray.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "favCell") as! CustomTableViewCell
+        var dict = favArray[(indexPath as NSIndexPath).row]
+        
+        cell.favName.text = dict["name"] as! String
+        cell.favAdd.text = dict["address"] as! String
+        cell.placeId = dict["placeId"] as! String
+        let url = URL(string:dict["iconString"] as! String)
+        if let data = try? Data(contentsOf: url!)
+        {
+            let image: UIImage = UIImage(data: data)!
+            cell.favIcon.image = image
+        }
+        cell.fav = true
+        //cell.favorites.addTarget(self, action: #selector(addRemoveFav(sender:)), for: .touchUpInside)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
+//        selRow = indexPath.row
+//        pid = cell.placeId
+//        isFav = cell.fav
+//        name = cell.name.text!
+//        performSegue(withIdentifier: "details", sender: nil)
+    }
 }

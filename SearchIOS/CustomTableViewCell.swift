@@ -11,12 +11,16 @@ import EasyToast
 
 class CustomTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var favIcon: UIImageView!
+    @IBOutlet weak var favAdd: UILabel!
+    @IBOutlet weak var favName: UILabel!
     @IBOutlet weak var icon: UIImageView!
     //@IBOutlet weak var favorites: UIImageView!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var name: UILabel!
     var placeId = ""
     var fav = false
+    var iconString = ""
     @IBOutlet weak var favorites: UIButton!
     
     @IBAction func onClickFav(_ sender: Any) {
