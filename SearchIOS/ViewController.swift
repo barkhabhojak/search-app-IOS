@@ -198,9 +198,18 @@ class ViewController: UIViewController {
         }
     }
     
-    func updateFav(favAr: [[String:String]]) {
+    func updateFav(favAr: [String:String], add: Bool) {
         print("update fav")
-        self.favArray = favAr
+        if add {
+            let f = foundInArr(placeID: favAr["placeId"]!)
+            if f == -10 {
+                self.favArray.append(favAr)
+            }
+        }
+        else {
+            let f = foundInArr(placeID: favAr["placeId"]!)
+            self.favArray.remove(at: f)
+        }
         if self.favArray.count == 0 {
             errorMessage(str: "no results")
         }
@@ -210,6 +219,15 @@ class ViewController: UIViewController {
             self.favTableView.separatorStyle = .singleLine;
             self.favTableView.reloadData()
         }
+    }
+    
+    func foundInArr(placeID: String) -> Int {
+        for (index,favItem) in favArray.enumerated() {
+            if favItem["placeId"] == placeID {
+                return index
+            }
+        }
+        return -10
     }
 }
 

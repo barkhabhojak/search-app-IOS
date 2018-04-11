@@ -223,20 +223,26 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
             let image: UIImage = UIImage(data: data)!
             cell.icon.image = image
         }
-        if cell.fav || f >= 0{
+        let cntrl = self.navigationController!.viewControllers.first as! ViewController
+        let arr = cntrl.foundInArr(placeID: cell.placeId)
+        if arr != -10{
             cell.favorites.setImage(UIImage(named: "favorite-filled"), for: [])
+            cell.fav = true
         }
-        else if !cell.fav || f == -10 {
+        else {
             cell.favorites.setImage(UIImage(named: "favorite-empty"), for: [])
+            cell.fav = false
         }
+//        if cell.fav || f >= 0{
+//            cell.favorites.setImage(UIImage(named: "favorite-filled"), for: [])
+//        }
+//        else if !cell.fav || f == -10 {
+//            cell.favorites.setImage(UIImage(named: "favorite-empty"), for: [])
+//        }
         cell.favorites.tag = indexPath.row
         cell.favorites.addTarget(self, action: #selector(addRemoveFav(sender:)), for: .touchUpInside)
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        return true
-//    }
     
     func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
@@ -248,42 +254,44 @@ extension TableViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     @objc func addRemoveFav(sender: UIButton){
+        let cntrl = self.navigationController!.viewControllers.first as! ViewController
         let buttonTag = sender.tag
         let ind = IndexPath.init(row: buttonTag, section: 0)
         let cell = self.tblJSON.cellForRow(at: ind) as! CustomTableViewCell
         let f = foundInArr(placeID: cell.placeId)
+        var temp = [String:String]()
+        temp["name"] = cell.name.text
+        temp["address"] = cell.address.text
+        temp["placeId"] = cell.placeId
+        temp["iconString"] = cell.iconString
         if f == -10 {
-            var temp = [String:String]()
-            temp["name"] = cell.name.text
-            temp["address"] = cell.address.text
-            temp["placeId"] = cell.placeId
-            temp["iconString"] = cell.iconString
+            cntrl.updateFav(favAr: temp, add: true)
             favArray.append(temp)
         }
         else {
+            cntrl.updateFav(favAr: temp, add: false)
             favArray.remove(at: f)
         }
-        let cntrl = self.navigationController!.viewControllers.first as! ViewController
-        cntrl.updateFav(favAr: favArray)
     }
     
     func addRemoveFavWithPID(rowInd: Int){
+        let cntrl = self.navigationController!.viewControllers.first as! ViewController
         let ind = IndexPath.init(row: rowInd, section: 0)
         let cell = self.tblJSON.cellForRow(at: ind) as! CustomTableViewCell
         let f = foundInArr(placeID: cell.placeId)
+        var temp = [String:String]()
+        temp["name"] = cell.name.text
+        temp["address"] = cell.address.text
+        temp["placeId"] = cell.placeId
+        temp["iconString"] = cell.iconString
         if f == -10 {
-            var temp = [String:String]()
-            temp["name"] = cell.name.text
-            temp["address"] = cell.address.text
-            temp["placeId"] = cell.placeId
-            temp["iconString"] = cell.iconString
+            cntrl.updateFav(favAr: temp, add: true)
             favArray.append(temp)
         }
         else {
+            cntrl.updateFav(favAr: temp, add: false)
             favArray.remove(at: f)
         }
-        let cntrl = self.navigationController!.viewControllers.first as! ViewController
-        cntrl.updateFav(favAr: favArray)
     }
     
     func foundInArr(placeID: String) -> Int {
