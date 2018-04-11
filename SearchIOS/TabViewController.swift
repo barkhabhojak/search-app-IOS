@@ -21,7 +21,6 @@ class TabViewController: UITabBarController {
     var web = ""
     var infoDetails = [String:Any]()
     var favSelect = false
-    let apiKey = "AIzaSyAU5hyg6Ky-pOHejxe2u8trKteehGkSNrk"
     var rowCell = 0
     var iconString = ""
 
@@ -43,7 +42,7 @@ class TabViewController: UITabBarController {
     
     func getDetails() {
         SwiftSpinner.show("Loading..")
-        var tempU = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + self.placeId + "&key=" + self.apiKey
+        var tempU = "http://iosappserver-env.us-east-2.elasticbeanstalk.com/placedetails?pid=" + self.placeId
         print("temp url = \(tempU)")
         var lat = ""
         var long = ""

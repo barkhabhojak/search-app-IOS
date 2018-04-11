@@ -8,7 +8,7 @@ var router = express.Router();
 const yelp = require('yelp-fusion');
 var debug = false;
 var keyword_global, category_global, distance_global, loc_global, radioBtnChecked_global;
-var local = true;
+var local = false;
 const placesKey = "AIzaSyAU5hyg6Ky-pOHejxe2u8trKteehGkSNrk";
 const geoKey = "AIzaSyBi3mS77HSSIOTdlIgpnsjzdUVJIindH8w";
 const yelpKey = "HPOJ_wtKt3pM6NziniTmqO4ulVh2OWMZnii_NxW4NbvEMzZIe-FWcg6vTL53NmUJHMQ4KnjK4JQG0omkn0IymrRQKiQhoI69HkOEdwCx0L7v8QLW0UjTy-rSyEu0WnYx";
@@ -84,7 +84,6 @@ app.get('/ip', (req, res) => {
 			}
 	});
 })
-//http://iosappserver-env.us-east-2.elasticbeanstalk.com/googlepath?origin=2626+S+Figueroa+St+Los+Angeles+CA+90007+USA&destination=34.0221597,-118.2610431&mode=driving
 
 app.get('/googlepath', (req, res) => {
 	var origin = req.query.origin.replaceAll(" ","+")
@@ -98,6 +97,18 @@ app.get('/googlepath', (req, res) => {
 				}
 	});
 });
+
+app.get('/placedetails', (req, res) => {
+	var pid = req.query.pid
+	var url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + pid + "&key=" + placesKey
+	request.get(url,function(error, response, body) {
+		if (error === null) {
+			var ob = JSON.parse(body);
+			res.send(ob);
+		}
+	});
+});
+
 
 app.get('/result', (req, res) => {
     if (req.query.next_page_token !== undefined) {
