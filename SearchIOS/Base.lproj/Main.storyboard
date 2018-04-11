@@ -183,6 +183,7 @@
                                         </prototypes>
                                         <connections>
                                             <outlet property="dataSource" destination="BYZ-38-t0r" id="EFL-w9-qlT"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="USl-pK-1JI"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
@@ -204,6 +205,7 @@
                         <outlet property="searchView" destination="VEA-Cj-CSW" id="jIg-S0-czn"/>
                         <outlet property="segSearchFav" destination="fX2-mq-scQ" id="zBx-Fk-tSv"/>
                         <segue destination="fYY-gH-ncb" kind="show" identifier="search" id="uyx-8F-Yy2"/>
+                        <segue destination="CgE-nZ-V1T" kind="show" identifier="favDetails" id="PB1-PL-hZ3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -949,4 +951,7 @@
         <image name="photos" width="30" height="30"/>
         <image name="review" width="30" height="30"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="PB1-PL-hZ3"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -23,6 +23,7 @@ class ViewController: UIViewController {
     var latitude = ""
     var longitude = ""
     var favArray = [[String:String]]()
+    var selectedPID = ""
     
     //for favorites you need name,address,icon,placeID
     
@@ -183,6 +184,11 @@ class ViewController: UIViewController {
             let vc = segue.destination as? TableViewController
             vc?.url = self.url
         }
+        if segue.destination is TabViewController
+        {
+            let vc = segue.destination as? TabViewController
+            vc?.placeId = self.selectedPID
+        }
     }
     
     func checkFav() {
@@ -199,7 +205,6 @@ class ViewController: UIViewController {
     }
     
     func updateFav(favAr: [String:String], add: Bool) {
-        print("update fav")
         if add {
             let f = foundInArr(placeID: favAr["placeId"]!)
             if f == -10 {
@@ -307,16 +312,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             cell.favIcon.image = image
         }
         cell.fav = true
-        //cell.favorites.addTarget(self, action: #selector(addRemoveFav(sender:)), for: .touchUpInside)
+        cell.tag = indexPath.row
+//        cell.addTarget(self, action: #selector(selectCell(sender:)), for: .touchUpInside)
         return cell
     }
     
     func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath) {
+        print("fav selected")
         let cell = tableView.cellForRow(at: indexPath) as! CustomTableViewCell
-//        selRow = indexPath.row
-//        pid = cell.placeId
-//        isFav = cell.fav
-//        name = cell.name.text!
-//        performSegue(withIdentifier: "details", sender: nil)
+        self.selectedPID = cell.placeId
+        performSegue(withIdentifier: "favDetails", sender: nil)
     }
+
 }
