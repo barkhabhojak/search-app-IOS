@@ -35,12 +35,15 @@ class InfoViewController: UIViewController {
         if ph != "null" {
             phoneLabel.text = ph
         }
-        var price = Int((self.infoDetails["price"] as! String))
-        var priceText = "Free"
+        let price = Int((self.infoDetails["price"] as! String))
+        var priceText = "No rating"
         if price != nil && price! > 0 {
             priceText = String(repeating: "$", count: price!)
         }
-        var rat = Double((self.infoDetails["rating"] as! String))
+        else if price == 0 {
+            priceText = "Free"
+        }
+        let rat = Double((self.infoDetails["rating"] as! String))
         if rat != nil {
             cosmosView.rating = Double((self.infoDetails["rating"] as! String))!
         }

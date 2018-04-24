@@ -42,7 +42,7 @@ class TabViewController: UITabBarController {
     
     func getDetails() {
         SwiftSpinner.show("Loading..")
-        var tempU = "http://iosappserver-env.us-east-2.elasticbeanstalk.com/placedetails?pid=" + self.placeId
+        let tempU = "http://iosappserver-env.us-east-2.elasticbeanstalk.com/placedetails?pid=" + self.placeId
         print("temp url = \(tempU)")
         var lat = ""
         var long = ""
@@ -148,7 +148,7 @@ class TabViewController: UITabBarController {
     @objc func onShareClick() {
         var text = "Check out \(self.name) located at \(self.address). Website: "
         text = text.replacingOccurrences(of: " ", with: "+")
-        let link = "https://twitter.com/intent/tweet?text=\(text)&url=\(self.web)";
+        let link = "https://twitter.com/intent/tweet?text=\(text)&url=\(self.web)&hashtags=TravelAndEntertainmentSearch";
         let svc = SFSafariViewController(url: URL(string: link)!)
         present(svc, animated: true, completion: nil)
     }
