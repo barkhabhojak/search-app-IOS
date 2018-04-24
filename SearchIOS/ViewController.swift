@@ -12,7 +12,7 @@ import GooglePlaces
 import McPicker
 import EasyToast
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, CLLocationManagerDelegate {
     
     var keyword = "pizza"
     var category = "Default"
@@ -46,11 +46,16 @@ class ViewController: UIViewController {
         self.favTableView.rowHeight = 73
         navbar.title = "Place Search"
         let locManager = CLLocationManager()
+        locManager.delegate = self
         locManager.requestWhenInUseAuthorization()
         var currentLocation: CLLocation!
+        locManager.requestLocation()
         currentLocation = locManager.location
         longitude = String(format:"%f", currentLocation.coordinate.longitude)
         latitude = String(format:"%f", currentLocation.coordinate.latitude)
+        print("check lat and long")
+        print(latitude)
+        print(longitude)
         
         let data: [[String]] = [["Default", "Airport","Amusement Park", "Aquarium", "Art Gallery", "Bakery", "Bar", "Beauty Salon", "Bowling Alley", "Bus Station", "Cafe", "Campground", "Car Rental", "Casino", "Lodging", "Movie Theater", "Museum", "Night Club", "Park", "Parking", "Restaurant", "Shopping Mall", "Stadium", "Subway Station", "Taxi Stand", "Train Station", "Transit Agency", "Zoo"]]
         let mcInputView = McPicker(data: data)
@@ -241,6 +246,19 @@ class ViewController: UIViewController {
         }
         return -10
     }
+    
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("update loc")
+        if locations.first != nil {
+            print("location:: (location)")
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("error:: (error)")
+    }
+
 }
 
 extension String {
