@@ -55,6 +55,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         var currentLocation: CLLocation!
         locManager.requestLocation()
         currentLocation = locManager.location
+        longitude = String(format:"%f", currentLocation.coordinate.longitude)
+        latitude = String(format:"%f", currentLocation.coordinate.latitude)
+        print("check lat and long")
+        print(latitude)
+        print(longitude)
+        searchBtn.isEnabled = true
         let data: [[String]] = [["Default", "Airport","Amusement Park", "Aquarium", "Art Gallery", "Bakery", "Bar", "Beauty Salon", "Bowling Alley", "Bus Station", "Cafe", "Campground", "Car Rental", "Casino", "Lodging", "Movie Theater", "Museum", "Night Club", "Park", "Parking", "Restaurant", "Shopping Mall", "Stadium", "Subway Station", "Taxi Stand", "Train Station", "Transit Agency", "Zoo"]]
         let mcInputView = McPicker(data: data)
         mcTextField.inputViewMcPicker = mcInputView
@@ -249,12 +255,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("update loc")
         if locations.first != nil {
-            longitude = String(format:"%f", locations.first!.coordinate.longitude)
-            latitude = String(format:"%f", locations.first!.coordinate.latitude)
-            print("check lat and long")
-            print(latitude)
-            print(longitude)
-            searchBtn.isEnabled = true
+//            longitude = String(format:"%f", locations.first!.coordinate.longitude)
+//            latitude = String(format:"%f", locations.first!.coordinate.latitude)
+//            print("check lat and long")
+//            print(latitude)
+//            print(longitude)
+//            searchBtn.isEnabled = true
         }
     }
     

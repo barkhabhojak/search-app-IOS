@@ -94,8 +94,8 @@ class TableViewController: UIViewController {
     
     
     @IBAction func getNextPage(_ sender: UIButton) {
-        var token = self.nextPageTokens[currPageIndex]
-        var tempUrl = "http://iosappserver-env.us-east-2.elasticbeanstalk.com/result?next_page_token=" + token.replacingOccurrences(of: " ", with: "")
+        let token = self.nextPageTokens[currPageIndex]
+        let tempUrl = "http://iosappserver-env.us-east-2.elasticbeanstalk.com/result?next_page_token=" + token.replacingOccurrences(of: " ", with: "")
         SwiftSpinner.show("Loading Next Page..")
         print ("next url = " + url)
         Alamofire.request(tempUrl).responseSwiftyJSON { response in
@@ -142,7 +142,7 @@ class TableViewController: UIViewController {
     @IBAction func getPrevPage(_ sender: UIButton) {
         var tempUrl = ""
         if self.currPageIndex - 2 >= 0 {
-            var token = self.nextPageTokens[currPageIndex-2]
+            let token = self.nextPageTokens[currPageIndex-2]
             tempUrl = "http://iosappserver-env.us-east-2.elasticbeanstalk.com/result?next_page_token=" + token.replacingOccurrences(of: " ", with: "")
         }
         else {
