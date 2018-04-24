@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cem-cb-ZXa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cem-cb-ZXa">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Helvetica.ttc">
-            <string>Helvetica</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -202,6 +197,7 @@
                         <outlet property="locationTextField" destination="a0U-pM-id0" id="zB7-fw-rEO"/>
                         <outlet property="mcTextField" destination="aEc-Js-BtJ" id="J83-hM-rS3"/>
                         <outlet property="navbar" destination="jea-sm-p7T" id="mv2-pg-Qkz"/>
+                        <outlet property="searchBtn" destination="Wvd-Pu-cVA" id="ijJ-iw-3xf"/>
                         <outlet property="searchView" destination="VEA-Cj-CSW" id="jIg-S0-czn"/>
                         <outlet property="segSearchFav" destination="fX2-mq-scQ" id="zBx-Fk-tSv"/>
                         <segue destination="fYY-gH-ncb" kind="show" identifier="search" id="uyx-8F-Yy2"/>
