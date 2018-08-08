@@ -1,6 +1,0 @@
-framework module Pods_SearchIOS {
-  umbrella header "Pods-SearchIOS-umbrella.h"
-
-  export *
-  module * { export * }
-}
