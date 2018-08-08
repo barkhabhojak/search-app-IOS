@@ -49,8 +49,14 @@ class TableViewController: UIViewController {
                 }
                 self.prevBtn.isEnabled = false;
                 if let val = places?["next_page_token"] {
-                    self.nextPageTokens.append(val.string!)
-                    self.nextBtn.isEnabled = true
+                    if val != nil {
+                        self.nextPageTokens.append(val.string!)
+                        self.nextBtn.isEnabled = true
+                    }
+                    else {
+                        self.nextBtn.isEnabled = false
+                        self.prevBtn.isEnabled = false
+                    }
                 }
                 else {
                     self.nextBtn.isEnabled = false
@@ -76,7 +82,7 @@ class TableViewController: UIViewController {
         let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
         let messageLabel = UILabel(frame: rect)
         if str == "no results" {
-            messageLabel.text = "No results found."
+            messageLabel.text = "No results."
         }
         else {
             messageLabel.text = "Error in retrieving details."

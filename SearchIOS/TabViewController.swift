@@ -91,10 +91,18 @@ class TabViewController: UITabBarController {
                 svc3.name = self.name
                 svc3.address = self.address
                 svc3.web = self.web
-                svc3.googleReviewArray = resData["reviews"].arrayObject as! [[String:Any]]
-                svc3.googleReviewArraySort = resData["reviews"].arrayObject as! [[String:Any]]
+                let ab = resData["reviews"]
+                if ab != nil {
+                    svc3.googleReviewArray = resData["reviews"].arrayObject as! [[String:Any]]
+                    svc3.googleReviewArraySort = resData["reviews"].arrayObject as! [[String:Any]]
+                }
+                else {
+                    svc3.googleReviewArray = []
+                    svc3.googleReviewArraySort = []
+                }
                 //self.setValuesOfControl()
                 self.setNav()
+                SwiftSpinner.hide()
             }
             
             //name = self.name,address = self.address,city,state,postal code,latitude = lat,longitude = long
@@ -119,7 +127,6 @@ class TabViewController: UITabBarController {
                     s.yelpReviewArraySort = yelp!["reviews"].arrayObject as! [[String:AnyObject]]
                 }
             }
-            SwiftSpinner.hide()
         }
     }
     

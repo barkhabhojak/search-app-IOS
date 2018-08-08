@@ -18,8 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        GMSPlacesClient.provideAPIKey("AIzaSyA41txth_QP4Nr-BU6Z3FBqJ8Awd9IMhMw")
-        GMSServices.provideAPIKey("AIzaSyCv_Xf40KLucRM9cuTiinyRAvYt0ovNwaE")
+
+        //add API Keys
+        GMSPlacesClient.provideAPIKey("")
+        GMSServices.provideAPIKey("")
+        
         if (UserDefaults.standard.object(forKey: "favorites") != nil) {
             print("launching")
             let a = self.window?.rootViewController?.childViewControllers[0] as! ViewController

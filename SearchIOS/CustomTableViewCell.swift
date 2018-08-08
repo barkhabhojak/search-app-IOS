@@ -24,6 +24,12 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var favorites: UIButton!
     
     @IBAction func onClickFav(_ sender: Any) {
+//        if favorites.imageView == UIImage(named: "favorite-empty") {
+//            fav = false
+//        }
+//        else {
+//            fav = true
+//        }
         if fav {
             fav = false
             favorites.setImage(UIImage(named: "favorite-empty"), for: [])

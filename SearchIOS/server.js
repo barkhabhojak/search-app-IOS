@@ -9,10 +9,13 @@ const yelp = require('yelp-fusion');
 var debug = false;
 var keyword_global, category_global, distance_global, loc_global, radioBtnChecked_global;
 var local = false;
-const placesKey = "AIzaSyAU5hyg6Ky-pOHejxe2u8trKteehGkSNrk";
-const geoKey = "AIzaSyBi3mS77HSSIOTdlIgpnsjzdUVJIindH8w";
-const yelpKey = "HPOJ_wtKt3pM6NziniTmqO4ulVh2OWMZnii_NxW4NbvEMzZIe-FWcg6vTL53NmUJHMQ4KnjK4JQG0omkn0IymrRQKiQhoI69HkOEdwCx0L7v8QLW0UjTy-rSyEu0WnYx";
+
+//add API keys
+const placesKey = "";
+const geoKey = "";
+const yelpKey = "";
 const client = yelp.client(yelpKey);
+
 // Parsers
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
@@ -25,16 +28,6 @@ app.get('/', (req, res) => {
 app.get('/parameters', (req,res) => {
 	res.send({'keyword' : keyword_global, 'category' : category_global, 'distance' : distance_global, 'location' : loc_global, 'radioChecked' : radioBtnChecked_global})
 })
-
-// app.get('/ilike', function (req, res) {
-// 	if (debug) {
-// 		console.log(req);
-// 		console.log("name = ",req.query.name);
-// 		console.log("lname = ", req.query.lname);
-// 	}
-// 	var responseObj = {message: 'OK'};
-// 	res.send(responseObj);
-// })
 
 app.get('/yelp', (req, res) => {
 	if (debug) {
@@ -253,8 +246,6 @@ String.prototype.replaceAll = function(search, replacement) {
     var target = this;
     return target.replace(new RegExp(search, 'g'), replacement);
 };
-
-https://maps.googleapis.com/maps/api/directions/json?origin=2626+S+Figueroa+St+Los+Angeles+CA+90007+USA&destination=34.0221597,-118.2610431&mode=driving&key=AIzaSyBi3mS77HSSIOTdlIgpnsjzdUVJIindH8w
 
 module.exports = app;
 //module.exports = router;

@@ -27,6 +27,9 @@ class ReviewViewController: UIViewController {
         print("review view controller")
         self.reviewTable.tableFooterView = UIView(frame: CGRect.zero)
         reviewTable.rowHeight = 150
+        if googleReviewArray.count == 0 {
+            errorMessage(str: "no results")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,7 +62,7 @@ class ReviewViewController: UIViewController {
         let rect = CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.height))
         let messageLabel = UILabel(frame: rect)
         if str == "no results" {
-            messageLabel.text = "No results found."
+            messageLabel.text = "No results."
         }
         else {
             messageLabel.text = "Error in retrieving details."
